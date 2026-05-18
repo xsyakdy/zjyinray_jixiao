@@ -1,17 +1,21 @@
+/* ============================================
+   PanelFrame - Apple Style
+   Clean White Surface
+   ============================================ */
+
 .panel {
   position: relative;
   min-height: 100%;
-  border: 1px solid #2b3139;
-  border-radius: 16px;
-  background: #1e2329;
+  border: 1px solid #E5E5E5;
+  border-radius: 12px;
+  background: #FFFFFF;
   overflow: hidden;
-  transition: border-color 0.18s ease, transform 0.18s ease, background 0.18s ease;
+  transition: border-color 0.18s ease, background 0.18s ease;
 }
 
 .panel:hover {
-  border-color: #3b424d;
-  background: #222831;
-  transform: translateY(-1px);
+  border-color: #D0D0D0;
+  background: #FFFFFF;
 }
 
 .header {
@@ -20,21 +24,21 @@
   justify-content: space-between;
   gap: 16px;
   padding: 16px 18px 14px;
-  border-bottom: 1px solid #2b3139;
+  border-bottom: 1px solid #E5E5E5;
 }
 
 .title {
-  color: #ffffff;
+  color: #1D1D1F;
   font-size: 18px;
   font-weight: 600;
-  letter-spacing: 0;
+  letter-spacing: -0.374px;
   font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
 .headerGlow {
   flex: 1;
   height: 1px;
-  background: linear-gradient(90deg, rgba(252, 213, 53, 0), rgba(252, 213, 53, 0.36), rgba(252, 213, 53, 0));
+  background: transparent;
 }
 
 .body {

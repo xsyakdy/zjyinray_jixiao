@@ -80,6 +80,7 @@ const getWarningSummary = (warning: WarningItem) => {
 
 export const DashboardPage = () => {
   const currentTime = useCurrentTime();
+  const [currentDate, currentClock = ''] = currentTime.split(' ');
 
   const metrics = useMemo(
     () =>
@@ -126,6 +127,10 @@ export const DashboardPage = () => {
             </div>
           </div>
 
+          <div className={styles.headerLineRight} />
+        </header>
+
+        <div className={styles.actionsRow}>
           <div className={styles.headerActions}>
             <button type="button" className={styles.headerActionButton}>
               修改历史
@@ -134,7 +139,7 @@ export const DashboardPage = () => {
               恢复默认数据
             </button>
           </div>
-        </header>
+        </div>
 
         <section className={styles.commandGrid}>
           <PanelFrame title="当前口径" className={styles.scopePanel}>
@@ -143,7 +148,10 @@ export const DashboardPage = () => {
           </PanelFrame>
 
           <PanelFrame title="当前时间" className={styles.timePanel}>
-            <div className={styles.timeValue}>{currentTime}</div>
+            <div className={styles.timeContent}>
+              <span className={styles.timeDate}>{currentDate}</span>
+              <strong className={styles.timeValue}>{currentClock}</strong>
+            </div>
           </PanelFrame>
         </section>
 
