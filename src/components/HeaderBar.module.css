@@ -3,11 +3,12 @@
   grid-template-columns: minmax(320px, 1.15fr) minmax(420px, 0.9fr) auto;
   align-items: center;
   gap: 18px;
-  height: 80px;
+  height: 76px;
   padding: 0 20px;
-  border: 1px solid #e5e5e5;
-  border-radius: 16px;
+  border: 1px solid rgba(29, 29, 31, 0.08);
+  border-radius: 18px;
   background: #ffffff;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
 }
 
 .titleBlock {
@@ -39,10 +40,10 @@
   align-items: center;
   gap: 16px;
   min-width: 0;
-  height: 48px;
+  height: 44px;
   padding: 0 18px;
-  border-radius: 12px;
-  background: #fafafa;
+  border-radius: 14px;
+  background: #f7f9fc;
 }
 
 .metaItem {
@@ -72,7 +73,7 @@
 .metaDivider {
   width: 1px;
   height: 28px;
-  background: #e5e5e5;
+  background: #e6ebf2;
 }
 
 .actions {

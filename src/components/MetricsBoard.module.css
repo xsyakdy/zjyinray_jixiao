@@ -1,19 +1,20 @@
 .board {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
+  gap: 16px;
   min-height: 0;
 }
 
 .card {
   min-height: 0;
   display: grid;
-  grid-template-rows: auto auto auto minmax(0, 1fr);
-  gap: 12px;
-  padding: 16px 18px;
-  border: 1px solid #e5e5e5;
-  border-radius: 16px;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: 14px;
+  padding: 18px 20px 18px;
+  border: 1px solid rgba(29, 29, 31, 0.08);
+  border-radius: 20px;
   background: #ffffff;
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.04);
 }
 
 .cardTop {
@@ -34,7 +35,7 @@
   display: block;
   margin-top: 8px;
   color: #1d1d1f;
-  font-size: 34px;
+  font-size: 35px;
   line-height: 1;
   font-weight: 600;
   letter-spacing: -0.04em;
@@ -63,34 +64,56 @@
 .watch { color: #b37600; background: #fff8e6; }
 .alert { color: #c11b2a; background: #fdecee; }
 
-.cardMiddle {
+.heroRow {
+  min-height: 0;
   display: grid;
-  grid-template-columns: 132px minmax(0, 1fr);
-  gap: 16px;
+  grid-template-columns: 136px minmax(0, 1fr);
+  gap: 18px;
   align-items: center;
 }
 
-.progressWrap {
+.gaugeWrap {
   display: flex;
   justify-content: center;
 }
 
-.metricSummary {
+.metricsColumns {
+  min-height: 0;
   display: grid;
-  gap: 10px;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
 }
 
-.summaryRow {
+.metricsBlock {
+  min-height: 0;
+  padding: 14px;
+  border-radius: 16px;
+  background: #f7f9fc;
+}
+
+.blockTitle {
+  display: block;
+  color: #7a7a7a;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.metricsList {
+  display: grid;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.metricItem {
   display: flex;
   justify-content: space-between;
-  gap: 12px;
-  padding-bottom: 6px;
-  border-bottom: 1px solid #f0f0f0;
+  gap: 10px;
+  align-items: baseline;
   color: #7a7a7a;
   font-size: 12px;
 }
 
-.summaryRow strong {
+.metricItem strong {
   color: #1d1d1f;
   font-size: 13px;
   font-weight: 600;
@@ -100,6 +123,11 @@
 .progressBar {
   display: grid;
   gap: 8px;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  padding: 10px 12px 12px;
+  border-radius: 14px;
+  background: #f7f9fc;
 }
 
 .progressHead {
@@ -125,56 +153,4 @@
 .fill {
   height: 100%;
   border-radius: inherit;
-}
-
-.detailSections {
-  min-height: 0;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-}
-
-.detailGroup {
-  min-height: 0;
-  padding: 12px;
-  border-radius: 14px;
-  background: #fafafa;
-}
-
-.groupTitle {
-  display: block;
-  color: #7a7a7a;
-  font-size: 11px;
-  font-weight: 500;
-}
-
-.detailGrid {
-  display: grid;
-  gap: 8px;
-  margin-top: 10px;
-}
-
-.detailCard {
-  padding: 10px 12px;
-  border: 1px solid #eeeeee;
-  border-radius: 12px;
-  background: #ffffff;
-}
-
-.detailLabel {
-  display: block;
-  color: #7a7a7a;
-  font-size: 11px;
-}
-
-.detailValue {
-  display: block;
-  margin-top: 5px;
-  color: #1d1d1f;
-  font-size: 13px;
-  font-weight: 600;
-}
-
-.rateValue {
-  color: #0066cc;
 }

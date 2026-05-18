@@ -1,7 +1,7 @@
 .summaryBar {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 12px;
+  gap: 14px;
 }
 
 .summaryItem {
@@ -9,11 +9,12 @@
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  min-height: 72px;
+  min-height: 64px;
   padding: 0 18px;
-  border: 1px solid #e5e5e5;
-  border-radius: 14px;
+  border: 1px solid rgba(29, 29, 31, 0.08);
+  border-radius: 16px;
   background: #ffffff;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.03);
 }
 
 .summaryLabel {
@@ -23,24 +24,13 @@
 }
 
 .summaryValue {
-  font-size: 30px;
+  font-size: 28px;
   line-height: 1;
   font-weight: 600;
   letter-spacing: -0.04em;
 }
 
-.good {
-  color: #1e7f3e;
-}
-
-.watch {
-  color: #b37600;
-}
-
-.alert {
-  color: #c11b2a;
-}
-
-.info {
-  color: #0066cc;
-}
+.good { color: #1e7f3e; }
+.watch { color: #b37600; }
+.alert { color: #c11b2a; }
+.info { color: #0066cc; }

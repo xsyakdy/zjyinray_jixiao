@@ -45,24 +45,47 @@ export const MetricsBoard = ({ metrics, formatWan, formatPercent }: MetricsBoard
             </strong>
           </div>
 
-          <div className={styles.cardMiddle}>
-            <div className={styles.progressWrap}>
+          <div className={styles.heroRow}>
+            <div className={styles.gaugeWrap}>
               <MetricGauge value={metric.annualRate} color={metric.color} />
             </div>
 
-            <div className={styles.metricSummary}>
-              <div className={styles.summaryRow}>
-                <span>年度目标</span>
-                <strong>{formatWan(metric.annualTarget)}</strong>
-              </div>
-              <div className={styles.summaryRow}>
-                <span>年度完成率</span>
-                <strong>{formatPercent(metric.annualRate)}</strong>
-              </div>
-              <div className={styles.summaryRow}>
-                <span>年度缺口</span>
-                <strong>{formatWan(metric.annualGap)}</strong>
-              </div>
+            <div className={styles.metricsColumns}>
+              <section className={styles.metricsBlock}>
+                <span className={styles.blockTitle}>年度组</span>
+                <div className={styles.metricsList}>
+                  <div className={styles.metricItem}>
+                    <span>年度目标</span>
+                    <strong>{formatWan(metric.annualTarget)}</strong>
+                  </div>
+                  <div className={styles.metricItem}>
+                    <span>年度完成率</span>
+                    <strong>{formatPercent(metric.annualRate)}</strong>
+                  </div>
+                  <div className={styles.metricItem}>
+                    <span>年度缺口</span>
+                    <strong>{formatWan(metric.annualGap)}</strong>
+                  </div>
+                </div>
+              </section>
+
+              <section className={styles.metricsBlock}>
+                <span className={styles.blockTitle}>季度组</span>
+                <div className={styles.metricsList}>
+                  <div className={styles.metricItem}>
+                    <span>季度目标</span>
+                    <strong>{formatWan(metric.quarterTarget)}</strong>
+                  </div>
+                  <div className={styles.metricItem}>
+                    <span>季度完成额</span>
+                    <strong>{formatWan(metric.quarterActual)}</strong>
+                  </div>
+                  <div className={styles.metricItem}>
+                    <span>季度缺口</span>
+                    <strong>{formatWan(metric.quarterGap)}</strong>
+                  </div>
+                </div>
+              </section>
             </div>
           </div>
 
@@ -74,48 +97,6 @@ export const MetricsBoard = ({ metrics, formatWan, formatPercent }: MetricsBoard
             <div className={styles.track}>
               <div className={styles.fill} style={{ width: `${Math.min(metric.quarterRate, 100)}%`, background: metric.color }} />
             </div>
-          </div>
-
-          <div className={styles.detailSections}>
-            <section className={styles.detailGroup}>
-              <span className={styles.groupTitle}>年度组</span>
-              <div className={styles.detailGrid}>
-                <article className={styles.detailCard}>
-                  <span className={styles.detailLabel}>年度目标</span>
-                  <strong className={styles.detailValue}>{formatWan(metric.annualTarget)}</strong>
-                </article>
-                <article className={styles.detailCard}>
-                  <span className={styles.detailLabel}>年度完成率</span>
-                  <strong className={`${styles.detailValue} ${styles.rateValue}`}>{formatPercent(metric.annualRate)}</strong>
-                </article>
-                <article className={styles.detailCard}>
-                  <span className={styles.detailLabel}>年度缺口</span>
-                  <strong className={styles.detailValue}>{formatWan(metric.annualGap)}</strong>
-                </article>
-              </div>
-            </section>
-
-            <section className={styles.detailGroup}>
-              <span className={styles.groupTitle}>季度组</span>
-              <div className={styles.detailGrid}>
-                <article className={styles.detailCard}>
-                  <span className={styles.detailLabel}>季度目标</span>
-                  <strong className={styles.detailValue}>{formatWan(metric.quarterTarget)}</strong>
-                </article>
-                <article className={styles.detailCard}>
-                  <span className={styles.detailLabel}>季度完成额</span>
-                  <strong className={styles.detailValue}>{formatWan(metric.quarterActual)}</strong>
-                </article>
-                <article className={styles.detailCard}>
-                  <span className={styles.detailLabel}>季度完成率</span>
-                  <strong className={`${styles.detailValue} ${styles.rateValue}`}>{formatPercent(metric.quarterRate)}</strong>
-                </article>
-                <article className={styles.detailCard}>
-                  <span className={styles.detailLabel}>季度缺口</span>
-                  <strong className={styles.detailValue}>{formatWan(metric.quarterGap)}</strong>
-                </article>
-              </div>
-            </section>
           </div>
         </article>
       ))}
