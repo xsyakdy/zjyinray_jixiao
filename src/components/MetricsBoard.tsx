@@ -81,6 +81,10 @@ export const MetricsBoard = ({ metrics, formatWan, formatPercent }: MetricsBoard
                     <strong>{formatWan(metric.quarterActual)}</strong>
                   </div>
                   <div className={styles.metricItem}>
+                    <span>季度完成率</span>
+                    <strong>{formatPercent(metric.quarterRate)}</strong>
+                  </div>
+                  <div className={styles.metricItem}>
                     <span>季度缺口</span>
                     <strong>{formatWan(metric.quarterGap)}</strong>
                   </div>

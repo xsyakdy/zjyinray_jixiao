@@ -3,7 +3,10 @@
   height: 100vh;
   overflow: hidden;
   padding: 16px;
-  background: #f5f7fb;
+  background:
+    radial-gradient(circle at 18% 14%, rgba(92, 163, 255, 0.12), transparent 28%),
+    radial-gradient(circle at 82% 10%, rgba(121, 187, 255, 0.1), transparent 24%),
+    linear-gradient(180deg, #f4f7fb 0%, #eef3f9 100%);
 }
 
 .dashboard {

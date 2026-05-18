@@ -16,18 +16,32 @@ export interface MetricRecord {
   quarterActual: number;
 }
 
-export interface RecognitionItem {
+export interface MarketingBattleItem {
   rank: 1 | 2 | 3;
   name: string;
-  label: string;
-  score: number;
-  avatarText: string;
+  department: string;
+  collectionAmount: number;
+  contractAmount: number;
+}
+
+export interface BrandProjectItem {
+  rank: 1 | 2 | 3;
+  projectName: string;
+  outputValue: number;
+  reason: string;
+}
+
+export interface PioneerItem {
+  rank: 1 | 2 | 3;
+  name: string;
+  department: string;
+  achievement: string;
 }
 
 export interface RecognitionBoardData {
-  marketingBattle: RecognitionItem[];
-  brandProjects: RecognitionItem[];
-  pioneerList: RecognitionItem[];
+  marketingBattle: MarketingBattleItem[];
+  brandProjects: BrandProjectItem[];
+  pioneerList: PioneerItem[];
 }
 
 export type WarningRiskLevel = '高风险' | '中风险' | '低风险';
