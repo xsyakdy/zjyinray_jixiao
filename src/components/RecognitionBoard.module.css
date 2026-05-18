@@ -1,0 +1,124 @@
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  min-height: 0;
+}
+
+.panel {
+  display: grid;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid #e5e5e5;
+  border-radius: 16px;
+  background: #ffffff;
+}
+
+.panelHeader {
+  padding-bottom: 8px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.title {
+  margin: 0;
+  color: #1d1d1f;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.firstCard {
+  display: grid;
+  grid-template-columns: 44px 54px minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+  padding: 14px;
+  border-radius: 14px;
+  background: #fafbff;
+}
+
+.rankBadge,
+.compactRank {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: #e8f4fd;
+  color: #0066cc;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.avatar,
+.compactAvatar {
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  border-radius: 14px;
+  background: #f5f5f7;
+  color: #1d1d1f;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.firstMain,
+.compactMain {
+  min-width: 0;
+}
+
+.firstMain strong,
+.compactMain strong {
+  display: block;
+  color: #1d1d1f;
+  font-size: 15px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.firstMain span,
+.compactMain span {
+  display: block;
+  margin-top: 4px;
+  color: #7a7a7a;
+  font-size: 12px;
+}
+
+.score,
+.compactScore {
+  color: #0066cc;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.compactList {
+  display: grid;
+  gap: 10px;
+}
+
+.compactRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: #fafafa;
+}
+
+.compactLeft {
+  display: grid;
+  grid-template-columns: 36px 40px minmax(0, 1fr);
+  gap: 10px;
+  align-items: center;
+  min-width: 0;
+}
+
+.compactAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  font-size: 15px;
+}

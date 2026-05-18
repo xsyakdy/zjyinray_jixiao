@@ -1,0 +1,95 @@
+.headerBar {
+  display: grid;
+  grid-template-columns: minmax(320px, 1.15fr) minmax(420px, 0.9fr) auto;
+  align-items: center;
+  gap: 18px;
+  height: 80px;
+  padding: 0 20px;
+  border: 1px solid #e5e5e5;
+  border-radius: 16px;
+  background: #ffffff;
+}
+
+.titleBlock {
+  min-width: 0;
+}
+
+.kicker {
+  display: block;
+  color: #7a7a7a;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 6px 0 0;
+  color: #1d1d1f;
+  font-size: 34px;
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  white-space: nowrap;
+}
+
+.metaBar {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 1px minmax(0, 1fr);
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+  height: 48px;
+  padding: 0 18px;
+  border-radius: 12px;
+  background: #fafafa;
+}
+
+.metaItem {
+  min-width: 0;
+}
+
+.metaLabel {
+  display: block;
+  color: #7a7a7a;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.metaValue {
+  display: block;
+  margin-top: 7px;
+  color: #1d1d1f;
+  font-size: 18px;
+  line-height: 1;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.metaDivider {
+  width: 1px;
+  height: 28px;
+  background: #e5e5e5;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.actionButton {
+  min-width: 96px;
+  height: 38px;
+  padding: 0 16px;
+  border: none;
+  border-radius: 999px;
+  background: #0066cc;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+}
