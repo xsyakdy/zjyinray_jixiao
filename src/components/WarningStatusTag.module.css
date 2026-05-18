@@ -1,0 +1,36 @@
+.tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 76px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid transparent;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.pending {
+  color: #1a1202;
+  border-color: rgba(255, 170, 48, 0.32);
+  background: linear-gradient(135deg, #ffcf66 0%, #ff9f43 100%);
+}
+
+.processing {
+  color: #ecf4ff;
+  border-color: rgba(61, 165, 255, 0.28);
+  background: linear-gradient(135deg, #2f88ff 0%, #58b6ff 100%);
+}
+
+.confirming {
+  color: #102031;
+  border-color: rgba(130, 210, 255, 0.24);
+  background: linear-gradient(135deg, #77d8ff 0%, #b4f0ff 100%);
+}
+
+.done {
+  color: #f2fff8;
+  border-color: rgba(61, 220, 151, 0.28);
+  background: linear-gradient(135deg, #2ccf88 0%, #3ddc97 100%);
+}
