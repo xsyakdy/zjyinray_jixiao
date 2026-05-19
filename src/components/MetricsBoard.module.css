@@ -5,17 +5,20 @@
 
 .board {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
+  /* Apple 风格：弹性网格，使用 auto-fill 替代固定列 */
+  grid-template-columns: repeat(3, minmax(320px, 1fr));
+  gap: 18px;
   min-height: 0;
+  height: 100%;
 }
 
 .card {
   min-height: 0;
-  display: grid;
-  grid-template-rows: auto minmax(0, 1fr) auto;
+  /* Apple 风格：弹性内部布局 */
+  display: flex;
+  flex-direction: column;
   gap: 14px;
-  padding: 18px 20px 18px;
+  padding: 18px 20px;
   border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 20px;
   background: rgba(255, 255, 255, 0.72);
@@ -27,6 +30,8 @@
     inset 0 1px 0 rgba(255, 255, 255, 0.8);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   animation: cardFadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  /* Apple 风格：防止内容溢出 */
+  overflow: hidden;
 }
 
 .card:nth-child(1) { animation-delay: 0ms; }
@@ -55,8 +60,18 @@
 .cardTop {
   display: flex;
   justify-content: space-between;
-  gap: 12px;
   align-items: flex-start;
+  gap: 14px;
+  flex-shrink: 0;
+}
+
+.cardInfo {
+  /* Apple 风格：弹性最小宽度 */
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
 }
 
 .cardName {
@@ -65,21 +80,27 @@
   font-size: 18px;
   font-weight: 600;
   letter-spacing: -0.01em;
+  /* Apple 风格：文本截断 */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .mainValue {
   display: block;
-  margin-top: 8px;
+  margin-top: 6px;
   color: #1d1d1f;
-  font-size: 35px;
+  font-size: 34px;
   line-height: 1;
   font-weight: 600;
   letter-spacing: -0.04em;
+  /* Apple 风格：数值不换行 */
+  white-space: nowrap;
 }
 
 .mainLabel {
   display: block;
-  margin-top: 6px;
+  margin-top: 4px;
   color: #7a7a7a;
   font-size: 14px;
 }
@@ -88,13 +109,14 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 60px;
-  height: 30px;
+  min-width: 64px;
+  height: 28px;
   padding: 0 12px;
   border-radius: 999px;
   font-size: 12px;
   font-weight: 600;
   transition: transform 0.2s ease;
+  flex-shrink: 0;
 }
 
 .card:hover .statusTag {
@@ -118,9 +140,11 @@
 }
 
 .heroRow {
-  min-height: 0;
+  flex: 1;
+  /* Apple 风格：最小高度替代固定高度 */
+  min-height: 100px;
   display: grid;
-  grid-template-columns: 136px minmax(0, 1fr);
+  grid-template-columns: auto 1fr;
   gap: 18px;
   align-items: center;
 }
@@ -128,23 +152,61 @@
 .gaugeWrap {
   display: flex;
   justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 100px;
+  flex-shrink: 0;
 }
 
 .metricsColumns {
+  flex: 1;
   min-height: 0;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  /* Apple 风格：弹性双列 */
+  grid-template-columns: repeat(2, 1fr);
   gap: 12px;
 }
 
 .metricsBlock {
   min-height: 0;
-  padding: 14px;
+  padding: 12px;
+  padding-left: 20px;
   border-radius: 16px;
-  background: rgba(247, 249, 252, 0.7);
+  background: rgba(247, 249, 252, 0.85);
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  /* Apple 风格：防止溢出 */
+  overflow: hidden;
+  /* 统一背景色 */
+  position: relative;
+}
+
+/* 年度组：左侧蓝色指示条 */
+.metricsBlock:nth-child(1)::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 16px;
+  bottom: 16px;
+  width: 4px;
+  border-radius: 0 4px 4px 0;
+  background: linear-gradient(180deg, #0066cc 0%, #0066cc 100%);
+}
+
+/* 季度组：左侧浅蓝色指示条 */
+.metricsBlock:nth-child(2)::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 16px;
+  bottom: 16px;
+  width: 4px;
+  border-radius: 0 4px 4px 0;
+  background: linear-gradient(180deg, #5ac8fa 0%, #5ac8fa 100%);
 }
 
 .blockTitle {
@@ -152,12 +214,15 @@
   color: #7a7a7a;
   font-size: 18px;
   font-weight: 500;
+  /* Apple 风格：标题安全截断 */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .metricsList {
   display: grid;
-  gap: 8px;
-  margin-top: 10px;
+  gap: 6px;
   font-size: 16px;
 }
 
@@ -168,6 +233,8 @@
   align-items: baseline;
   color: #7a7a7a;
   font-size: 16px;
+  /* Apple 风格：文本安全 */
+  min-width: 0;
 }
 
 .metricItem strong {
@@ -175,23 +242,31 @@
   font-size: 16px;
   font-weight: 600;
   text-align: right;
+  flex-shrink: 0;
+  /* Apple 风格：数值安全截断 */
+  white-space: nowrap;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .progressBar {
   display: grid;
   gap: 8px;
-  padding: 10px 12px 12px;
+  padding: 10px 12px;
   border-radius: 14px;
   background: rgba(245, 247, 250, 0.8);
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.6);
   font-size: 14px;
+  flex-shrink: 0;
 }
 
 .progressHead {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   color: #7a7a7a;
   font-size: 12px;
 }

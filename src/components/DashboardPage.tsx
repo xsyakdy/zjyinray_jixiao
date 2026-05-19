@@ -14,7 +14,7 @@ import styles from './DashboardPage.module.css';
 const metricColorMap = {
   contract: '#42d5ff',
   collection: '#2f88ff',
-  outputValue: '#57f3c3',
+  outputValue: '#5eb8ff',
 } as const;
 
 const quarterLabelMap = {

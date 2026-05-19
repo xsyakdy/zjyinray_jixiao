@@ -7,9 +7,10 @@
   height: 100%;
   min-height: 0;
   display: grid;
+  /* Apple 风格：弹性行布局 */
   grid-template-rows: auto auto 1fr;
-  gap: 10px;
-  padding: 16px 18px;
+  gap: 12px;
+  padding: 16px;
   border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 20px;
   background: rgba(255, 255, 255, 0.72);
@@ -26,6 +27,7 @@
   align-items: baseline;
   justify-content: space-between;
   gap: 12px;
+  flex-shrink: 0;
 }
 
 .title {
@@ -34,28 +36,36 @@
   font-size: 24px;
   font-weight: 600;
   letter-spacing: -0.01em;
+  /* Apple 风格：标题安全截断 */
+  white-space: nowrap;
 }
 
 .subtitle {
   margin: 0;
   color: #7a7a7a;
   font-size: 14px;
+  /* Apple 风格：安全截断 */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .columns,
 .row {
   display: grid;
-  grid-template-columns: 1.2fr 0.95fr 1.45fr 0.58fr 0.8fr 1.1fr;
-  gap: 12px;
+  /* Apple 风格：弹性列布局，最小宽度防止挤压 */
+  grid-template-columns: minmax(120px, 1.2fr) minmax(80px, 0.95fr) minmax(140px, 1.45fr) minmax(50px, 0.58fr) minmax(60px, 0.8fr) minmax(80px, 1.1fr);
+  gap: 10px;
   align-items: center;
 }
 
 .columns {
-  padding: 0 8px 8px;
+  padding: 0 8px 10px;
   border-bottom: 1px solid rgba(0, 102, 204, 0.08);
   color: #7a7a7a;
   font-size: 18px;
   font-weight: 500;
+  flex-shrink: 0;
 }
 
 .list {
@@ -80,12 +90,14 @@
 }
 
 .row {
-  padding: 10px 8px;
+  padding: 12px 8px;
   border-radius: 12px;
   background: rgba(247, 249, 252, 0.5);
   backdrop-filter: blur(8px);
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   animation: rowFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+  /* Apple 风格：弹性内容 */
+  min-width: 0;
 }
 
 .row:hover {
@@ -117,6 +129,9 @@
   flex-direction: row;
   align-items: center;
   gap: 8px;
+  /* Apple 风格：弹性最小宽度 */
+  min-width: 0;
+  overflow: hidden;
 }
 
 .riskTag {
@@ -131,6 +146,7 @@
   font-size: 11px;
   font-weight: 600;
   transition: transform 0.2s ease;
+  flex-shrink: 0;
 }
 
 .row:hover .riskTag {
@@ -160,20 +176,37 @@
   color: #1d1d1f;
   font-size: 16px;
   font-weight: 500;
+  /* Apple 风格：文本安全截断 */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
 }
 
 .descCell {
   color: #7a7a7a;
   font-size: 16px;
   line-height: 1.4;
+  /* Apple 风格：描述安全显示 */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
 }
 
 .statusCell {
   display: flex;
   align-items: center;
+  /* Apple 风格：状态单元格弹性 */
+  min-width: 0;
+  overflow: hidden;
 }
 
 .todoCell {
   color: #0066cc;
   font-weight: 600;
+  /* Apple 风格：待办安全截断 */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

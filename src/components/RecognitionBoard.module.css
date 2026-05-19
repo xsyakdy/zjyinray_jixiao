@@ -59,10 +59,14 @@
 
 .content {
   display: grid;
-  grid-template-rows: auto 1fr;
+  grid-template-rows: 1fr auto;
   gap: 8px;
   min-height: 0;
   overflow: hidden;
+}
+
+.panel:last-child .content {
+  grid-template-rows: 1fr auto;
 }
 
 .title {
@@ -287,10 +291,9 @@
   box-shadow: 0 4px 16px rgba(0, 102, 204, 0.08);
 }
 
-/* 奋斗先锋榜卡片 */
 .cardPioneer {
   display: grid;
-  grid-template-columns: 34px 34px minmax(0, 1fr) 1fr;
+  grid-template-columns: 34px 44px minmax(0, 1fr) 1fr;
   gap: 10px;
   align-items: center;
   padding: 12px;
@@ -301,6 +304,8 @@
   border: 1px solid rgba(255, 255, 255, 0.6);
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   animation: cardSlideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+  min-height: 0;
+  overflow: hidden;
 }
 
 .cardPioneer:hover {
@@ -324,6 +329,227 @@
   justify-content: center;
   z-index: 1000;
   animation: modalFadeIn 0.2s ease-out;
+}
+
+/* 轮播导航 */
+.dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0, 102, 204, 0.2);
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dot:hover {
+  background: rgba(0, 102, 204, 0.4);
+  transform: scale(1.2);
+}
+
+.dotActive {
+  width: 24px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #0066cc 0%, #42d5ff 100%);
+}
+
+.dotActive:hover {
+  background: linear-gradient(135deg, #0055aa 0%, #2fc5ef 100%);
+}
+
+/* 奋斗先锋榜完整卡片轮播 */
+.pioneerCarousel {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 100%;
+}
+
+.pioneerCard {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 48px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  border: 1px solid rgba(0, 102, 204, 0.1);
+  box-shadow: 0 4px 16px rgba(0, 102, 204, 0.08);
+  min-height: 0;
+  overflow: hidden;
+}
+
+.pioneerLeft {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding-top: 4px;
+}
+
+.pioneerAvatar {
+  width: 115px;
+  height: 115px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #eef2f7 0%, #f5f7fa 100%);
+  color: #1d1d1f;
+  font-size: 44px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(0, 102, 204, 0.15);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.pioneerRight {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.pioneerHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-align: center;
+}
+
+.pioneerName {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #1d1d1f;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.pioneerDept {
+  color: #666;
+  font-size: 12px;
+}
+
+.pioneerRank {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(0, 102, 204, 0.08);
+}
+
+.pioneerRankBadge {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(0, 102, 204, 0.15) 0%, rgba(66, 213, 255, 0.1) 100%);
+  color: #0066cc;
+  font-size: 14px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pioneerRankLabel {
+  color: #0066cc;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.pioneerAvatarImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pioneerHeader {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+}
+
+.pioneerName {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  color: #1d1d1f;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.pioneerDept {
+  color: #666;
+  font-size: 14px;
+}
+
+.pioneerRank {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.pioneerRankBadge {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(0, 102, 204, 0.15) 0%, rgba(66, 213, 255, 0.1) 100%);
+  color: #0066cc;
+  font-size: 16px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pioneerRankLabel {
+  color: #0066cc;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.pioneerDivider {
+  display: none;
+}
+
+.pioneerStory {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.pioneerStoryLabel {
+  font-size: 13px;
+  font-weight: 600;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.pioneerStoryText {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #333;
+  flex: 1;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
 }
 
 .modalContent {

@@ -7,6 +7,7 @@
 .screen {
   position: relative;
   min-height: 100vh;
+  /* Apple 风格：移除固定宽度，使用弹性布局 */
   overflow-x: auto;
   overflow-y: auto;
   /* Apple-inspired subtle gradient canvas */
@@ -56,18 +57,21 @@
 .dashboard {
   position: relative;
   z-index: 1;
-  min-width: 1600px;
+  /* Apple 风格：弹性最小宽度替代固定宽度 */
+  min-width: 1280px;
   min-height: 100vh;
-  padding: 24px;
+  padding: 20px;
   display: grid;
+  /* Apple 风格：弹性行高 */
   grid-template-rows: auto auto auto auto auto;
   grid-template-columns: 1fr;
-  gap: 16px;
+  gap: 14px;
 }
 
 .warningArea {
-  height: 340px;
-  min-height: 0;
+  /* Apple 风格：弹性高度替代固定高度 */
+  min-height: 340px;
+  height: auto;
 }
 
 /* ============================================
@@ -124,10 +128,12 @@
 
 .topHeader {
   display: grid;
+  /* Apple 风格：弹性三列布局 */
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  gap: 18px;
-  min-height: 116px;
+  gap: 16px;
+  /* Apple 风格：最小高度替代固定高度 */
+  min-height: 100px;
   padding: 0 8px;
 }
 
@@ -155,7 +161,7 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 12px;
+  gap: 10px;
 }
 
 .headerLabel {
@@ -169,7 +175,7 @@
 .headerTitle {
   margin: 0;
   color: #1D1D1F;
-  font-size: clamp(34px, 2.35vw, 46px);
+  font-size: clamp(28px, 2.35vw, 46px);
   line-height: 1.08;
   font-weight: 600;
   letter-spacing: -0.374px;
@@ -189,7 +195,7 @@
 }
 
 .headerUnderline span:nth-child(1) {
-  width: 160px;
+  width: 140px;
 }
 
 .headerUnderline span:nth-child(2) {
@@ -199,7 +205,7 @@
 }
 
 .headerUnderline span:nth-child(3) {
-  width: 160px;
+  width: 140px;
 }
 
 .headerActions {
@@ -220,6 +226,10 @@
   letter-spacing: -0.224px;
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  /* Apple 风格：安全截断 */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .headerActionButton:hover {
@@ -238,8 +248,9 @@
 
 .commandGrid {
   display: grid;
-  grid-template-columns: minmax(0, 1.4fr) minmax(340px, 0.8fr);
-  gap: 16px;
+  /* Apple 风格：弹性列宽比例 */
+  grid-template-columns: minmax(0, 1.5fr) minmax(340px, 1fr);
+  gap: 14px;
 }
 
 /* ============================================
@@ -252,6 +263,8 @@
 .metricPanel,
 .recognitionPanel,
 .warningPanel {
+  /* Apple 风格：弹性内容 */
+  min-height: 0;
   /* Premium frosted glass effect */
   background: rgba(255, 255, 255, 0.72);
   backdrop-filter: saturate(180%) blur(20px);
@@ -271,6 +284,7 @@
 .recognitionPanel :global(section),
 .warningPanel :global(section) {
   height: 100%;
+  min-height: 0;
 }
 
 /* ============================================
@@ -282,10 +296,14 @@
   font-size: 28px;
   font-weight: 600;
   letter-spacing: -0.374px;
+  /* Apple 风格：文本安全 */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .scopeNote {
-  margin: 10px 0 0;
+  margin: 8px 0 0;
   color: #7A7A7A;
   font-size: 14px;
   line-height: 1.55;
@@ -293,17 +311,21 @@
 
 .timePanel {
   display: flex;
+  /* Apple 风格：弹性对齐 */
+  align-items: center;
 }
 
 .timeValue {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 92px;
+  min-height: 80px;
   color: #1D1D1F;
   font-size: 34px;
   font-weight: 600;
   letter-spacing: -0.374px;
+  /* Apple 风格：数值安全 */
+  white-space: nowrap;
 }
 
 /* ============================================
@@ -313,21 +335,26 @@
 .metricsGrid,
 .recognitionGrid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
+  /* Apple 风格：弹性网格 */
+  grid-template-columns: repeat(3, minmax(280px, 1fr));
+  gap: 14px;
 }
 
 .metricCard {
   display: grid;
-  gap: 16px;
+  gap: 14px;
   min-height: 100%;
+  /* Apple 风格：弹性内容 */
+  min-width: 0;
 }
 
 .metricHeader {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 132px;
-  gap: 12px;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
   align-items: center;
+  /* Apple 风格：弹性最小宽度 */
+  min-width: 0;
 }
 
 .metricCaption,
@@ -343,17 +370,21 @@
 
 .metricActualValue {
   display: block;
-  margin-top: 8px;
+  margin-top: 6px;
   color: #1D1D1F;
-  font-size: clamp(28px, 2vw, 40px);
+  font-size: clamp(26px, 2vw, 40px);
   line-height: 1.05;
   font-weight: 600;
   letter-spacing: -0.374px;
+  /* Apple 风格：数值安全 */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .metricActualLabel {
   display: block;
-  margin-top: 8px;
+  margin-top: 6px;
   color: #7A7A7A;
   font-size: 13px;
 }
@@ -366,17 +397,20 @@
 
 .metricStatusRow {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
 }
 
 .metricStatusMeta,
 .metricGapMeta {
-  padding: 14px 16px;
+  padding: 12px 14px;
   border: 1px solid rgba(0, 102, 204, 0.08);
   border-radius: 14px;
   background: rgba(247, 249, 252, 0.8);
   backdrop-filter: blur(8px);
+  /* Apple 风格：弹性内容 */
+  min-width: 0;
+  overflow: hidden;
 }
 
 .metricStatusTag {
@@ -384,7 +418,7 @@
   align-items: center;
   justify-content: center;
   min-width: 72px;
-  margin-top: 8px;
+  margin-top: 6px;
   padding: 6px 14px;
   border-radius: 9999px;
   font-size: 12px;
@@ -425,14 +459,16 @@
 
 .metricGapValue {
   display: block;
-  margin-top: 8px;
+  margin-top: 6px;
   color: #0066CC;
   font-size: 18px;
   font-weight: 600;
+  /* Apple 风格：数值安全 */
+  white-space: nowrap;
 }
 
 .metricProgressArea {
-  padding: 14px 16px;
+  padding: 12px 14px;
   border: 1px solid rgba(0, 102, 204, 0.08);
   border-radius: 14px;
   background: rgba(247, 249, 252, 0.8);
@@ -443,7 +479,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   color: #1D1D1F;
   font-size: 13px;
   font-weight: 500;
@@ -474,57 +510,76 @@
 
 .metricSections {
   display: grid;
-  gap: 12px;
+  gap: 10px;
 }
 
 .metricBlock {
-  padding: 14px;
+  padding: 12px;
   border: 1px solid rgba(0, 102, 204, 0.06);
   border-radius: 14px;
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(8px);
+  /* Apple 风格：弹性内容 */
+  min-width: 0;
+  overflow: hidden;
 }
 
 .metricBlockHeader {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 12px;
+  gap: 10px;
+  margin-bottom: 10px;
+  /* Apple 风格：弹性 */
+  min-width: 0;
 }
 
 .metricBlockTitle {
   color: #1D1D1F;
   font-size: 14px;
   font-weight: 600;
+  /* Apple 风格：标题安全截断 */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .metricBlockGap {
   color: #7A7A7A;
   font-size: 12px;
   font-weight: 500;
+  /* Apple 风格：差距值安全 */
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .metricBlockGrid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
 }
 
 .detailCard {
-  padding: 14px;
+  padding: 12px;
   border: 1px solid rgba(0, 102, 204, 0.06);
   border-radius: 14px;
   background: rgba(247, 249, 252, 0.8);
+  /* Apple 风格：弹性内容 */
+  min-width: 0;
+  overflow: hidden;
 }
 
 .detailValue {
   display: block;
-  margin-top: 8px;
+  margin-top: 6px;
   color: #1D1D1F;
   font-size: 18px;
   line-height: 1.25;
   font-weight: 600;
+  /* Apple 风格：数值安全 */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .rateValue {
@@ -540,20 +595,23 @@
 
 .rankingList {
   display: grid;
-  gap: 12px;
+  gap: 10px;
 }
 
 .rankingItem {
   display: grid;
-  grid-template-columns: 50px 54px minmax(0, 1fr) auto;
-  gap: 12px;
+  /* Apple 风格：弹性列布局 */
+  grid-template-columns: 50px 54px 1fr auto;
+  gap: 10px;
   align-items: center;
-  padding: 14px;
+  padding: 12px;
   border: 1px solid rgba(0, 102, 204, 0.06);
   border-radius: 14px;
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(8px);
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  /* Apple 风格：弹性内容 */
+  min-width: 0;
 }
 
 .rankingItem:hover {
@@ -571,6 +629,7 @@
   border-radius: 14px;
   font-size: 18px;
   font-weight: 700;
+  flex-shrink: 0;
 }
 
 .medal1 {
@@ -596,6 +655,7 @@
   border: 1px solid rgba(0, 102, 204, 0.08);
   border-radius: 14px;
   background: linear-gradient(135deg, #F5F5F5 0%, #FAFAFA 100%);
+  flex-shrink: 0;
 }
 
 .avatarText {
@@ -605,7 +665,9 @@
 }
 
 .rankingMain {
+  /* Apple 风格：弹性最小宽度 */
   min-width: 0;
+  overflow: hidden;
 }
 
 .rankingName {
@@ -619,13 +681,14 @@
 }
 
 .rankingMeta {
-  margin: 5px 0 0;
+  margin: 4px 0 0;
   color: #7A7A7A;
   font-size: 13px;
 }
 
 .scoreBlock {
   text-align: right;
+  flex-shrink: 0;
 }
 
 .rankingScore {
@@ -634,6 +697,8 @@
   color: #0066CC;
   font-size: 24px;
   font-weight: 600;
+  /* Apple 风格：分数安全 */
+  white-space: nowrap;
 }
 
 /* ============================================
@@ -652,13 +717,14 @@
 .warningTableHeader,
 .warningRow {
   display: grid;
-  grid-template-columns: 1.4fr 1fr 1.7fr 0.72fr 0.82fr 1.2fr;
-  gap: 12px;
+  /* Apple 风格：弹性列宽 */
+  grid-template-columns: minmax(100px, 1.4fr) minmax(70px, 1fr) minmax(120px, 1.7fr) minmax(50px, 0.72fr) minmax(60px, 0.82fr) minmax(80px, 1.2fr);
+  gap: 10px;
   align-items: center;
 }
 
 .warningTableHeader {
-  padding: 14px 18px;
+  padding: 12px 16px;
   color: #1D1D1F;
   font-size: 12px;
   font-weight: 600;
@@ -671,10 +737,12 @@
 }
 
 .warningRow {
-  padding: 16px 18px;
+  padding: 14px 16px;
   border-bottom: 1px solid rgba(0, 102, 204, 0.04);
   background: rgba(255, 255, 255, 0.5);
   transition: background 0.2s ease;
+  /* Apple 风格：弹性内容 */
+  min-width: 0;
 }
 
 .warningRow:nth-child(even) {
@@ -691,8 +759,10 @@
 
 .warningTitleBlock {
   display: grid;
-  gap: 6px;
+  gap: 4px;
+  /* Apple 风格：弹性最小宽度 */
   min-width: 0;
+  overflow: hidden;
 }
 
 .warningRiskTag {
@@ -706,12 +776,17 @@
   font-size: 11px;
   font-weight: 600;
   border: 1px solid transparent;
+  flex-shrink: 0;
 }
 
 .warningTitle {
   color: #1D1D1F;
   font-size: 14px;
   font-weight: 600;
+  /* Apple 风格：标题安全截断 */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .warningCell,
@@ -720,6 +795,11 @@
   color: #333333;
   font-size: 13px;
   line-height: 1.45;
+  /* Apple 风格：文本安全 */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
 }
 
 .warningDescription {
@@ -729,6 +809,9 @@
 .warningStatusCell {
   display: flex;
   align-items: center;
+  /* Apple 风格：状态单元格弹性 */
+  min-width: 0;
+  overflow: hidden;
 }
 
 .warningTodo {
@@ -791,23 +874,28 @@
 
 @media (max-width: 1680px) {
   .dashboard {
-    min-width: 1480px;
+    min-width: 1200px;
   }
 
   .topHeader {
-    grid-template-columns: minmax(140px, 0.9fr) minmax(540px, 1.25fr) minmax(240px, 0.95fr);
+    grid-template-columns: 1fr auto 1fr;
+  }
+
+  .metricsGrid,
+  .recognitionGrid {
+    grid-template-columns: repeat(3, minmax(240px, 1fr));
   }
 }
 
 @media (max-width: 1440px) {
   .dashboard {
-    min-width: 1380px;
-    padding: 20px;
+    min-width: 1100px;
+    padding: 16px;
   }
 
   .commandGrid,
   .metricsGrid,
   .recognitionGrid {
-    gap: 14px;
+    gap: 12px;
   }
 }
