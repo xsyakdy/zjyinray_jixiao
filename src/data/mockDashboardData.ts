@@ -47,9 +47,9 @@ export const mockDashboardData: DashboardData = {
       { rank: 3, projectName: '数字工厂项目', outputValue: 688.6, reason: '产线改造进度稳健，品牌传播与交付表现兼顾。' },
     ],
     pioneerList: [
-      { rank: 1, name: '赵倩', department: '项目管理部', achievement: '连续推动跨部门问题闭环，关键节点提前完成交付准备。' },
-      { rank: 2, name: '刘晨', department: '交付中心', achievement: '现场统筹与客户沟通表现突出，保障重点项目顺利验收。' },
-      { rank: 3, name: '陈曦', department: '解决方案部', achievement: '主动支援重点投标与方案复盘，显著提升方案中标竞争力。' },
+      { rank: 1, name: '赵倩', department: '项目管理部', achievement: '连续推动跨部门问题闭环，关键节点提前完成交付准备。', avatar: '/images/zhaoqian.png' },
+      { rank: 2, name: '刘晨', department: '交付中心', achievement: '现场统筹与客户沟通表现突出，保障重点项目顺利验收。', avatar: '/images/liuchen.png' },
+      { rank: 3, name: '陈曦', department: '解决方案部', achievement: '主动支援重点投标与方案复盘，显著提升方案中标竞争力。', avatar: '/images/chenxi.png' },
     ],
   },
   warnings: [

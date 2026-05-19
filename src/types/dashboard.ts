@@ -36,6 +36,7 @@ export interface PioneerItem {
   name: string;
   department: string;
   achievement: string;
+  avatar?: string;
 }
 
 export interface RecognitionBoardData {

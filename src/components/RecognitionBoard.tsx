@@ -5,6 +5,7 @@ import type {
   PioneerItem,
   RecognitionBoardData,
 } from '../types/dashboard';
+import { RankPersonModal } from './RankPersonModal';
 import styles from './RecognitionBoard.module.css';
 
 interface RecognitionBoardProps {
@@ -12,41 +13,6 @@ interface RecognitionBoardProps {
 }
 
 const formatAmount = (value: number) => `${value.toFixed(2)} 万元`;
-
-// 奋斗先锋弹窗组件
-const PioneerModal = ({
-  item,
-  onClose,
-}: {
-  item: PioneerItem;
-  onClose: () => void;
-}) => {
-  return (
-    <div className={styles.modalOverlay} onClick={onClose}>
-      <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-        <button className={styles.modalClose} onClick={onClose}>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <path d="M18 6L6 18M6 6l12 12" />
-          </svg>
-        </button>
-        <div className={styles.modalAvatar}>{item.name.slice(0, 1)}</div>
-        <div className={styles.modalHeader}>
-          <h3>{item.name}</h3>
-          <span className={styles.modalDept}>{item.department}</span>
-        </div>
-        <div className={styles.modalRank}>
-          <span className={styles.rankNumber}>{item.rank}</span>
-          <span className={styles.rankLabel}>奋斗先锋</span>
-        </div>
-        <div className={styles.modalDivider} />
-        <div className={styles.modalStory}>
-          <h4>奋斗事迹</h4>
-          <p>{item.achievement}</p>
-        </div>
-      </div>
-    </div>
-  );
-};
 
 const renderMarketingBattle = (items: MarketingBattleItem[]) => {
   const [first, ...rest] = items;
@@ -183,7 +149,7 @@ const renderPioneerList = (
 };
 
 export const RecognitionBoard = ({ recognition }: RecognitionBoardProps) => {
-  const [selectedPioneer, setSelectedPioneer] = useState<PioneerItem | null>(null);
+  const [selectedPioneerIndex, setSelectedPioneerIndex] = useState<number | null>(null);
 
   return (
     <section className={styles.board}>
@@ -210,14 +176,18 @@ export const RecognitionBoard = ({ recognition }: RecognitionBoardProps) => {
           <h2 className={styles.title}>奋斗先锋榜</h2>
         </header>
         <div className={styles.content}>
-          {renderPioneerList(recognition.pioneerList, setSelectedPioneer)}
+          {renderPioneerList(recognition.pioneerList, (item) => {
+            const index = recognition.pioneerList.findIndex((p) => p.rank === item.rank);
+            setSelectedPioneerIndex(index);
+          })}
         </div>
       </article>
 
-      {selectedPioneer && (
-        <PioneerModal
-          item={selectedPioneer}
-          onClose={() => setSelectedPioneer(null)}
+      {selectedPioneerIndex !== null && (
+        <RankPersonModal
+          items={recognition.pioneerList}
+          initialIndex={selectedPioneerIndex}
+          onClose={() => setSelectedPioneerIndex(null)}
         />
       )}
     </section>
