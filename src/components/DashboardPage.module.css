@@ -1,14 +1,56 @@
 /* ============================================
    Apple-Inspired Enterprise Dashboard
-   Blue-White Theme, Clean & Premium
+   Premium Big-Screen Experience
    ============================================ */
 
+/* ===== GLOBAL BACKGROUND ===== */
 .screen {
   position: relative;
   min-height: 100vh;
   overflow-x: auto;
   overflow-y: auto;
-  background: #F5F5F7;
+  /* Apple-inspired subtle gradient canvas */
+  background: 
+    /* Subtle radial highlight from top-left */
+    radial-gradient(ellipse 80% 60% at 20% 0%, rgba(0, 102, 204, 0.06) 0%, transparent 60%),
+    /* Secondary soft glow from right */
+    radial-gradient(ellipse 60% 50% at 80% 20%, rgba(66, 213, 255, 0.04) 0%, transparent 50%),
+    /* Main parchment canvas */
+    linear-gradient(180deg, #F8F9FC 0%, #F5F5F7 40%, #F0F2F5 100%);
+}
+
+/* Ambient floating orbs for depth */
+.screen::before,
+.screen::after {
+  content: '';
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.screen::before {
+  width: 600px;
+  height: 600px;
+  top: -200px;
+  right: -100px;
+  background: radial-gradient(circle, rgba(0, 102, 204, 0.04) 0%, transparent 70%);
+  animation: floatSlow 25s ease-in-out infinite;
+}
+
+.screen::after {
+  width: 800px;
+  height: 800px;
+  bottom: -300px;
+  left: -200px;
+  background: radial-gradient(circle, rgba(66, 213, 255, 0.03) 0%, transparent 70%);
+  animation: floatSlow 30s ease-in-out infinite reverse;
+}
+
+@keyframes floatSlow {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -20px) scale(1.05); }
+  66% { transform: translate(-20px, 30px) scale(0.98); }
 }
 
 .dashboard {
@@ -30,12 +72,13 @@
 
 /* ============================================
    Dashboard Frame & Corners
+   Premium Apple-style corner accents
    ============================================ */
 
 .dashboardFrame {
   position: absolute;
   inset: 14px;
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 102, 204, 0.08);
   border-radius: 24px;
   pointer-events: none;
 }
@@ -76,6 +119,7 @@
 
 /* ============================================
    Top Header
+   Apple-style premium header with frosted glass
    ============================================ */
 
 .topHeader {
@@ -161,6 +205,7 @@
 .headerActions {
   display: flex;
   gap: 10px;
+  justify-content: flex-end;
 }
 
 .headerActionButton {
@@ -174,11 +219,17 @@
   font-weight: 500;
   letter-spacing: -0.224px;
   cursor: pointer;
-  transition: background 0.15s ease;
+  transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .headerActionButton:hover {
   background: #0071E3;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 102, 204, 0.3);
+}
+
+.headerActionButton:active {
+  transform: scale(0.97);
 }
 
 /* ============================================
@@ -192,7 +243,8 @@
 }
 
 /* ============================================
-   Cards - Clean White Style
+   Cards - Enhanced Frosted Glass
+   Apple Vision Pro inspired depth
    ============================================ */
 
 .scopePanel,
@@ -200,10 +252,17 @@
 .metricPanel,
 .recognitionPanel,
 .warningPanel {
-  background: #FFFFFF;
-  border: 1px solid #E5E5E5;
-  border-radius: 12px;
+  /* Premium frosted glass effect */
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 20px;
   overflow: hidden;
+  box-shadow: 
+    0 8px 32px rgba(31, 64, 104, 0.08),
+    0 2px 8px rgba(31, 64, 104, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
 }
 
 .scopePanel :global(section),
@@ -314,9 +373,10 @@
 .metricStatusMeta,
 .metricGapMeta {
   padding: 14px 16px;
-  border: 1px solid #E5E5E5;
-  border-radius: 12px;
-  background: #FAFAFA;
+  border: 1px solid rgba(0, 102, 204, 0.08);
+  border-radius: 14px;
+  background: rgba(247, 249, 252, 0.8);
+  backdrop-filter: blur(8px);
 }
 
 .metricStatusTag {
@@ -337,21 +397,22 @@
 
 .metricStatusGood {
   color: #1E7F3E;
-  background: #E6F4EA;
+  background: rgba(30, 127, 62, 0.1);
 }
 
 .metricStatusWatch {
   color: #B37600;
-  background: #FFF8E6;
+  background: rgba(179, 118, 0, 0.1);
 }
 
 .metricStatusAlert {
   color: #C11B2A;
-  background: #FDECEE;
+  background: rgba(193, 27, 42, 0.1);
 }
 
 /* ============================================
    Gap & Progress Values
+   Enhanced animations
    ============================================ */
 
 .metricGapValue,
@@ -359,7 +420,7 @@
 .rateValue,
 .rankingScore,
 .timeValue {
-  animation: fadeInUp 0.4s ease both;
+  animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .metricGapValue {
@@ -372,9 +433,10 @@
 
 .metricProgressArea {
   padding: 14px 16px;
-  border: 1px solid #E5E5E5;
-  border-radius: 12px;
-  background: #FAFAFA;
+  border: 1px solid rgba(0, 102, 204, 0.08);
+  border-radius: 14px;
+  background: rgba(247, 249, 252, 0.8);
+  backdrop-filter: blur(8px);
 }
 
 .progressHeader {
@@ -395,15 +457,15 @@
 .progressTrack {
   height: 6px;
   border-radius: 9999px;
-  background: #E5E5E5;
+  background: rgba(0, 0, 0, 0.06);
   overflow: hidden;
 }
 
 .progressFill {
   height: 100%;
   border-radius: inherit;
-  background: #0066CC;
-  transition: width 0.45s ease;
+  background: linear-gradient(90deg, #0066CC, #42d5ff);
+  transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* ============================================
@@ -417,9 +479,10 @@
 
 .metricBlock {
   padding: 14px;
-  border: 1px solid #E5E5E5;
-  border-radius: 12px;
-  background: #FFFFFF;
+  border: 1px solid rgba(0, 102, 204, 0.06);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
 }
 
 .metricBlockHeader {
@@ -450,9 +513,9 @@
 
 .detailCard {
   padding: 14px;
-  border: 1px solid #E5E5E5;
-  border-radius: 12px;
-  background: #FAFAFA;
+  border: 1px solid rgba(0, 102, 204, 0.06);
+  border-radius: 14px;
+  background: rgba(247, 249, 252, 0.8);
 }
 
 .detailValue {
@@ -472,6 +535,7 @@
 
 /* ============================================
    Ranking List
+   Enhanced with hover effects
    ============================================ */
 
 .rankingList {
@@ -485,15 +549,18 @@
   gap: 12px;
   align-items: center;
   padding: 14px;
-  border: 1px solid #E5E5E5;
-  border-radius: 12px;
-  background: #FFFFFF;
-  transition: border-color 0.16s ease, background 0.16s ease;
+  border: 1px solid rgba(0, 102, 204, 0.06);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .rankingItem:hover {
-  border-color: #0066CC;
-  background: #FAFBFF;
+  border-color: rgba(0, 102, 204, 0.2);
+  background: rgba(255, 255, 255, 0.9);
+  transform: translateX(4px);
+  box-shadow: 0 4px 16px rgba(0, 102, 204, 0.08);
 }
 
 .rankingMedal {
@@ -501,23 +568,23 @@
   place-items: center;
   width: 50px;
   height: 50px;
-  border-radius: 12px;
+  border-radius: 14px;
   font-size: 18px;
   font-weight: 700;
 }
 
 .medal1 {
-  background: #FFF8E6;
+  background: linear-gradient(135deg, #FFF8E6 0%, #FFE5B4 100%);
   color: #B37600;
 }
 
 .medal2 {
-  background: #F5F5F5;
+  background: linear-gradient(135deg, #F5F5F5 0%, #E8E8E8 100%);
   color: #7A7A7A;
 }
 
 .medal3 {
-  background: #FFF8E6;
+  background: linear-gradient(135deg, #FFF8E6 0%, #FFE5B4 100%);
   color: #B37600;
 }
 
@@ -526,9 +593,9 @@
   place-items: center;
   width: 54px;
   height: 54px;
-  border: 1px solid #E5E5E5;
-  border-radius: 12px;
-  background: #F5F5F5;
+  border: 1px solid rgba(0, 102, 204, 0.08);
+  border-radius: 14px;
+  background: linear-gradient(135deg, #F5F5F5 0%, #FAFAFA 100%);
 }
 
 .avatarText {
@@ -571,13 +638,15 @@
 
 /* ============================================
    Warning Table
+   Enhanced with smooth transitions
    ============================================ */
 
 .warningTableWrap {
-  border: 1px solid #E5E5E5;
-  border-radius: 12px;
+  border: 1px solid rgba(0, 102, 204, 0.08);
+  border-radius: 14px;
   overflow: hidden;
-  background: #FFFFFF;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
 }
 
 .warningTableHeader,
@@ -593,8 +662,8 @@
   color: #1D1D1F;
   font-size: 12px;
   font-weight: 600;
-  border-bottom: 1px solid #E5E5E5;
-  background: #FAFAFA;
+  border-bottom: 1px solid rgba(0, 102, 204, 0.08);
+  background: rgba(247, 249, 252, 0.8);
 }
 
 .warningList {
@@ -603,16 +672,21 @@
 
 .warningRow {
   padding: 16px 18px;
-  border-bottom: 1px solid #F0F0F0;
-  background: #FFFFFF;
+  border-bottom: 1px solid rgba(0, 102, 204, 0.04);
+  background: rgba(255, 255, 255, 0.5);
+  transition: background 0.2s ease;
 }
 
 .warningRow:nth-child(even) {
-  background: #FAFAFA;
+  background: rgba(247, 249, 252, 0.6);
 }
 
 .warningRow:last-child {
   border-bottom: none;
+}
+
+.warningRow:hover {
+  background: rgba(255, 255, 255, 0.9);
 }
 
 .warningTitleBlock {
@@ -668,36 +742,48 @@
 
 .riskHigh {
   color: #C11B2A;
-  background: #FDECEE;
-  border-color: rgba(193, 27, 42, 0.12);
+  background: rgba(193, 27, 42, 0.1);
+  border-color: rgba(193, 27, 42, 0.15);
 }
 
 .riskMedium {
   color: #B37600;
-  background: #FFF8E6;
-  border-color: rgba(179, 118, 0, 0.12);
+  background: rgba(179, 118, 0, 0.1);
+  border-color: rgba(179, 118, 0, 0.15);
 }
 
 .riskLow {
   color: #0066CC;
-  background: #E8F4FD;
-  border-color: rgba(0, 102, 204, 0.12);
+  background: rgba(0, 102, 204, 0.1);
+  border-color: rgba(0, 102, 204, 0.15);
 }
 
 /* ============================================
    Animations
+   Enhanced cubic-bezier curves
    ============================================ */
 
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(6px);
+    transform: translateY(12px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
+
+/* Staggered animation delays for cards */
+.metricCard:nth-child(1) .metricGapValue { animation-delay: 0ms; }
+.metricCard:nth-child(2) .metricGapValue { animation-delay: 80ms; }
+.metricCard:nth-child(3) .metricGapValue { animation-delay: 160ms; }
+
+.rankingItem:nth-child(1) .rankingScore { animation-delay: 0ms; }
+.rankingItem:nth-child(2) .rankingScore { animation-delay: 60ms; }
+.rankingItem:nth-child(3) .rankingScore { animation-delay: 120ms; }
+.rankingItem:nth-child(4) .rankingScore { animation-delay: 180ms; }
+.rankingItem:nth-child(5) .rankingScore { animation-delay: 240ms; }
 
 /* ============================================
    Responsive
