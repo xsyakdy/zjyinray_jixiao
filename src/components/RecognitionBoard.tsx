@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import type {
   BrandProjectItem,
   MarketingBattleItem,
@@ -11,6 +12,41 @@ interface RecognitionBoardProps {
 }
 
 const formatAmount = (value: number) => `${value.toFixed(2)} 万元`;
+
+// 奋斗先锋弹窗组件
+const PioneerModal = ({
+  item,
+  onClose,
+}: {
+  item: PioneerItem;
+  onClose: () => void;
+}) => {
+  return (
+    <div className={styles.modalOverlay} onClick={onClose}>
+      <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+        <button className={styles.modalClose} onClick={onClose}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M18 6L6 18M6 6l12 12" />
+          </svg>
+        </button>
+        <div className={styles.modalAvatar}>{item.name.slice(0, 1)}</div>
+        <div className={styles.modalHeader}>
+          <h3>{item.name}</h3>
+          <span className={styles.modalDept}>{item.department}</span>
+        </div>
+        <div className={styles.modalRank}>
+          <span className={styles.rankNumber}>{item.rank}</span>
+          <span className={styles.rankLabel}>奋斗先锋</span>
+        </div>
+        <div className={styles.modalDivider} />
+        <div className={styles.modalStory}>
+          <h4>奋斗事迹</h4>
+          <p>{item.achievement}</p>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const renderMarketingBattle = (items: MarketingBattleItem[]) => {
   const [first, ...rest] = items;
@@ -98,12 +134,21 @@ const renderBrandProjects = (items: BrandProjectItem[]) => {
   );
 };
 
-const renderPioneerList = (items: PioneerItem[]) => {
+const renderPioneerList = (
+  items: PioneerItem[],
+  onSelect: (item: PioneerItem) => void
+) => {
   const [first, ...rest] = items;
 
   return (
     <>
-      <div className={styles.cardPioneer}>
+      <div
+        className={styles.cardPioneer}
+        onClick={() => onSelect(first)}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => e.key === 'Enter' && onSelect(first)}
+      >
         <span className={styles.rankBadge}>1</span>
         <div className={styles.avatar}>{first.name.slice(0, 1)}</div>
         <div className={styles.mainInfo}>
@@ -115,7 +160,14 @@ const renderPioneerList = (items: PioneerItem[]) => {
 
       <div className={styles.compactList}>
         {rest.map((item) => (
-          <div key={item.rank} className={styles.cardPioneer}>
+          <div
+            key={item.rank}
+            className={styles.cardPioneer}
+            onClick={() => onSelect(item)}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => e.key === 'Enter' && onSelect(item)}
+          >
             <span className={styles.rankBadge}>{item.rank}</span>
             <div className={styles.compactAvatar}>{item.name.slice(0, 1)}</div>
             <div className={styles.mainInfo}>
@@ -131,6 +183,8 @@ const renderPioneerList = (items: PioneerItem[]) => {
 };
 
 export const RecognitionBoard = ({ recognition }: RecognitionBoardProps) => {
+  const [selectedPioneer, setSelectedPioneer] = useState<PioneerItem | null>(null);
+
   return (
     <section className={styles.board}>
       <article className={styles.panel}>
@@ -156,9 +210,16 @@ export const RecognitionBoard = ({ recognition }: RecognitionBoardProps) => {
           <h2 className={styles.title}>奋斗先锋榜</h2>
         </header>
         <div className={styles.content}>
-          {renderPioneerList(recognition.pioneerList)}
+          {renderPioneerList(recognition.pioneerList, setSelectedPioneer)}
         </div>
       </article>
+
+      {selectedPioneer && (
+        <PioneerModal
+          item={selectedPioneer}
+          onClose={() => setSelectedPioneer(null)}
+        />
+      )}
     </section>
   );
 };
