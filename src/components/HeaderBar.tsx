@@ -18,20 +18,13 @@ export const HeaderBar = ({
   return (
     <header className={styles.headerBar}>
       <div className={styles.titleBlock}>
-        <span className={styles.kicker}>ENTERPRISE PERFORMANCE COCKPIT</span>
         <h1 className={styles.title}>{title}</h1>
       </div>
 
       <div className={styles.metaBar}>
-        <div className={styles.metaItem}>
-          <span className={styles.metaLabel}>当前口径</span>
-          <strong className={styles.metaValue}>{scopeText}</strong>
-        </div>
+        <strong className={styles.metaValue}>{scopeText}</strong>
         <div className={styles.metaDivider} />
-        <div className={styles.metaItem}>
-          <span className={styles.metaLabel}>当前时间</span>
-          <strong className={styles.metaValue}>{currentTime}</strong>
-        </div>
+        <strong className={styles.metaValue}>{currentTime}</strong>
       </div>
 
       <div className={styles.actions}>

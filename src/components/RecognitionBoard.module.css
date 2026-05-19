@@ -68,7 +68,7 @@
 .title {
   margin: 0;
   color: #1d1d1f;
-  font-size: 18px;
+  font-size: 24px;
   font-weight: 600;
   letter-spacing: -0.01em;
 }
@@ -137,7 +137,7 @@
 .mainInfo strong {
   display: block;
   color: #1d1d1f;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
   white-space: nowrap;
   overflow: hidden;
@@ -148,7 +148,7 @@
   display: block;
   margin-top: 2px;
   color: #7a7a7a;
-  font-size: 12px;
+  font-size: 16px;
 }
 
 .metrics {
@@ -166,12 +166,12 @@
 
 .metric span {
   color: #7a7a7a;
-  font-size: 10px;
+  font-size: 16px;
 }
 
 .metric strong {
   color: #1d1d1f;
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 600;
   white-space: nowrap;
 }
@@ -179,7 +179,7 @@
 .story {
   margin: 0;
   color: #7a7a7a;
-  font-size: 12px;
+  font-size: 16px;
   line-height: 1.4;
   min-width: 0;
   display: -webkit-box;
@@ -214,7 +214,7 @@
   min-width: 0;
   align-self: center;
   color: #7a7a7a;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.4;
   display: -webkit-box;
   -webkit-line-clamp: 2;
