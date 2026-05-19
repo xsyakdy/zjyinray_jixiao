@@ -1,22 +1,727 @@
+/* ============================================
+   Apple-Inspired Enterprise Dashboard
+   Blue-White Theme, Clean & Premium
+   ============================================ */
+
 .screen {
+  position: relative;
   min-height: 100vh;
-  height: 100vh;
-  overflow: hidden;
-  padding: 16px;
-  background:
-    radial-gradient(circle at 18% 14%, rgba(92, 163, 255, 0.12), transparent 28%),
-    radial-gradient(circle at 82% 10%, rgba(121, 187, 255, 0.1), transparent 24%),
-    linear-gradient(180deg, #f4f7fb 0%, #eef3f9 100%);
+  overflow-x: auto;
+  overflow-y: auto;
+  background: #F5F5F7;
 }
 
 .dashboard {
-  height: 100%;
-  min-height: 0;
+  position: relative;
+  z-index: 1;
+  min-width: 1600px;
+  min-height: 100vh;
+  padding: 24px;
   display: grid;
-  grid-template-rows: 72px 58px 292px 228px minmax(0, 1fr);
+  grid-template-rows: auto auto auto auto auto;
+  grid-template-columns: 1fr;
   gap: 16px;
 }
 
 .warningArea {
+  height: 340px;
   min-height: 0;
+}
+
+/* ============================================
+   Dashboard Frame & Corners
+   ============================================ */
+
+.dashboardFrame {
+  position: absolute;
+  inset: 14px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 24px;
+  pointer-events: none;
+}
+
+.cornerLt,
+.cornerRt,
+.cornerLb,
+.cornerRb {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  pointer-events: none;
+}
+
+.cornerLt,
+.cornerRt {
+  top: 14px;
+  border-top: 2px solid #0066CC;
+}
+
+.cornerLb,
+.cornerRb {
+  bottom: 14px;
+  border-bottom: 2px solid rgba(0, 102, 204, 0.4);
+}
+
+.cornerLt,
+.cornerLb {
+  left: 14px;
+  border-left: 2px solid #0066CC;
+}
+
+.cornerRt,
+.cornerRb {
+  right: 14px;
+  border-right: 2px solid rgba(0, 102, 204, 0.4);
+}
+
+/* ============================================
+   Top Header
+   ============================================ */
+
+.topHeader {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 18px;
+  min-height: 116px;
+  padding: 0 8px;
+}
+
+.headerDecor {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.headerLineLeft {
+  height: 1px;
+  background: linear-gradient(90deg, #0066CC, transparent);
+  width: 80%;
+}
+
+.headerLineRight {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #0066CC);
+  width: 80%;
+  margin-left: auto;
+}
+
+.headerCenter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+}
+
+.headerLabel {
+  color: #7A7A7A;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+}
+
+.headerTitle {
+  margin: 0;
+  color: #1D1D1F;
+  font-size: clamp(34px, 2.35vw, 46px);
+  line-height: 1.08;
+  font-weight: 600;
+  letter-spacing: -0.374px;
+}
+
+.headerUnderline {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.headerUnderline span {
+  display: block;
+  height: 2px;
+  border-radius: 999px;
+  background: #0066CC;
+}
+
+.headerUnderline span:nth-child(1) {
+  width: 160px;
+}
+
+.headerUnderline span:nth-child(2) {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.headerUnderline span:nth-child(3) {
+  width: 160px;
+}
+
+.headerActions {
+  display: flex;
+  gap: 10px;
+}
+
+.headerActionButton {
+  min-width: 98px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 9999px;
+  background: #0066CC;
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.224px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.headerActionButton:hover {
+  background: #0071E3;
+}
+
+/* ============================================
+   Main Content Grid
+   ============================================ */
+
+.commandGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(340px, 0.8fr);
+  gap: 16px;
+}
+
+/* ============================================
+   Cards - Clean White Style
+   ============================================ */
+
+.scopePanel,
+.timePanel,
+.metricPanel,
+.recognitionPanel,
+.warningPanel {
+  background: #FFFFFF;
+  border: 1px solid #E5E5E5;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.scopePanel :global(section),
+.timePanel :global(section),
+.metricPanel :global(section),
+.recognitionPanel :global(section),
+.warningPanel :global(section) {
+  height: 100%;
+}
+
+/* ============================================
+   Scope & Time Panels
+   ============================================ */
+
+.scopeMain {
+  color: #1D1D1F;
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -0.374px;
+}
+
+.scopeNote {
+  margin: 10px 0 0;
+  color: #7A7A7A;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.timePanel {
+  display: flex;
+}
+
+.timeValue {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 92px;
+  color: #1D1D1F;
+  font-size: 34px;
+  font-weight: 600;
+  letter-spacing: -0.374px;
+}
+
+/* ============================================
+   Metrics Grid
+   ============================================ */
+
+.metricsGrid,
+.recognitionGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.metricCard {
+  display: grid;
+  gap: 16px;
+  min-height: 100%;
+}
+
+.metricHeader {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 132px;
+  gap: 12px;
+  align-items: center;
+}
+
+.metricCaption,
+.metricSectionLabel,
+.detailLabel,
+.scoreLabel,
+.warningSubMeta {
+  color: #7A7A7A;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+.metricActualValue {
+  display: block;
+  margin-top: 8px;
+  color: #1D1D1F;
+  font-size: clamp(28px, 2vw, 40px);
+  line-height: 1.05;
+  font-weight: 600;
+  letter-spacing: -0.374px;
+}
+
+.metricActualLabel {
+  display: block;
+  margin-top: 8px;
+  color: #7A7A7A;
+  font-size: 13px;
+}
+
+.metricVisualWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.metricStatusRow {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.metricStatusMeta,
+.metricGapMeta {
+  padding: 14px 16px;
+  border: 1px solid #E5E5E5;
+  border-radius: 12px;
+  background: #FAFAFA;
+}
+
+.metricStatusTag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 72px;
+  margin-top: 8px;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* ============================================
+   Status Tags - Apple Style
+   ============================================ */
+
+.metricStatusGood {
+  color: #1E7F3E;
+  background: #E6F4EA;
+}
+
+.metricStatusWatch {
+  color: #B37600;
+  background: #FFF8E6;
+}
+
+.metricStatusAlert {
+  color: #C11B2A;
+  background: #FDECEE;
+}
+
+/* ============================================
+   Gap & Progress Values
+   ============================================ */
+
+.metricGapValue,
+.progressValue,
+.rateValue,
+.rankingScore,
+.timeValue {
+  animation: fadeInUp 0.4s ease both;
+}
+
+.metricGapValue {
+  display: block;
+  margin-top: 8px;
+  color: #0066CC;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.metricProgressArea {
+  padding: 14px 16px;
+  border: 1px solid #E5E5E5;
+  border-radius: 12px;
+  background: #FAFAFA;
+}
+
+.progressHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  color: #1D1D1F;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.progressValue {
+  color: #0066CC;
+  font-weight: 600;
+}
+
+.progressTrack {
+  height: 6px;
+  border-radius: 9999px;
+  background: #E5E5E5;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  border-radius: inherit;
+  background: #0066CC;
+  transition: width 0.45s ease;
+}
+
+/* ============================================
+   Metric Blocks & Details
+   ============================================ */
+
+.metricSections {
+  display: grid;
+  gap: 12px;
+}
+
+.metricBlock {
+  padding: 14px;
+  border: 1px solid #E5E5E5;
+  border-radius: 12px;
+  background: #FFFFFF;
+}
+
+.metricBlockHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.metricBlockTitle {
+  color: #1D1D1F;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.metricBlockGap {
+  color: #7A7A7A;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.metricBlockGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.detailCard {
+  padding: 14px;
+  border: 1px solid #E5E5E5;
+  border-radius: 12px;
+  background: #FAFAFA;
+}
+
+.detailValue {
+  display: block;
+  margin-top: 8px;
+  color: #1D1D1F;
+  font-size: 18px;
+  line-height: 1.25;
+  font-weight: 600;
+}
+
+.rateValue {
+  color: #0066CC;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+/* ============================================
+   Ranking List
+   ============================================ */
+
+.rankingList {
+  display: grid;
+  gap: 12px;
+}
+
+.rankingItem {
+  display: grid;
+  grid-template-columns: 50px 54px minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+  padding: 14px;
+  border: 1px solid #E5E5E5;
+  border-radius: 12px;
+  background: #FFFFFF;
+  transition: border-color 0.16s ease, background 0.16s ease;
+}
+
+.rankingItem:hover {
+  border-color: #0066CC;
+  background: #FAFBFF;
+}
+
+.rankingMedal {
+  display: grid;
+  place-items: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.medal1 {
+  background: #FFF8E6;
+  color: #B37600;
+}
+
+.medal2 {
+  background: #F5F5F5;
+  color: #7A7A7A;
+}
+
+.medal3 {
+  background: #FFF8E6;
+  color: #B37600;
+}
+
+.avatarFrame {
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  border: 1px solid #E5E5E5;
+  border-radius: 12px;
+  background: #F5F5F5;
+}
+
+.avatarText {
+  color: #1D1D1F;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.rankingMain {
+  min-width: 0;
+}
+
+.rankingName {
+  display: block;
+  color: #1D1D1F;
+  font-size: 15px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rankingMeta {
+  margin: 5px 0 0;
+  color: #7A7A7A;
+  font-size: 13px;
+}
+
+.scoreBlock {
+  text-align: right;
+}
+
+.rankingScore {
+  display: block;
+  margin-top: 4px;
+  color: #0066CC;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+/* ============================================
+   Warning Table
+   ============================================ */
+
+.warningTableWrap {
+  border: 1px solid #E5E5E5;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #FFFFFF;
+}
+
+.warningTableHeader,
+.warningRow {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1.7fr 0.72fr 0.82fr 1.2fr;
+  gap: 12px;
+  align-items: center;
+}
+
+.warningTableHeader {
+  padding: 14px 18px;
+  color: #1D1D1F;
+  font-size: 12px;
+  font-weight: 600;
+  border-bottom: 1px solid #E5E5E5;
+  background: #FAFAFA;
+}
+
+.warningList {
+  display: grid;
+}
+
+.warningRow {
+  padding: 16px 18px;
+  border-bottom: 1px solid #F0F0F0;
+  background: #FFFFFF;
+}
+
+.warningRow:nth-child(even) {
+  background: #FAFAFA;
+}
+
+.warningRow:last-child {
+  border-bottom: none;
+}
+
+.warningTitleBlock {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+
+.warningRiskTag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  min-width: 60px;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 600;
+  border: 1px solid transparent;
+}
+
+.warningTitle {
+  color: #1D1D1F;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.warningCell,
+.warningOwner,
+.warningTodo {
+  color: #333333;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.warningDescription {
+  color: #7A7A7A;
+}
+
+.warningStatusCell {
+  display: flex;
+  align-items: center;
+}
+
+.warningTodo {
+  color: #0066CC;
+  font-weight: 600;
+}
+
+/* ============================================
+   Risk Tags - Apple Style
+   ============================================ */
+
+.riskHigh {
+  color: #C11B2A;
+  background: #FDECEE;
+  border-color: rgba(193, 27, 42, 0.12);
+}
+
+.riskMedium {
+  color: #B37600;
+  background: #FFF8E6;
+  border-color: rgba(179, 118, 0, 0.12);
+}
+
+.riskLow {
+  color: #0066CC;
+  background: #E8F4FD;
+  border-color: rgba(0, 102, 204, 0.12);
+}
+
+/* ============================================
+   Animations
+   ============================================ */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+
+@media (max-width: 1680px) {
+  .dashboard {
+    min-width: 1480px;
+  }
+
+  .topHeader {
+    grid-template-columns: minmax(140px, 0.9fr) minmax(540px, 1.25fr) minmax(240px, 0.95fr);
+  }
+}
+
+@media (max-width: 1440px) {
+  .dashboard {
+    min-width: 1380px;
+    padding: 20px;
+  }
+
+  .commandGrid,
+  .metricsGrid,
+  .recognitionGrid {
+    gap: 14px;
+  }
 }

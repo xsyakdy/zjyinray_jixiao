@@ -18,37 +18,37 @@ const renderMarketingBattle = (items: MarketingBattleItem[]) => {
   return (
     <>
       <div className={styles.firstCard}>
-        <div className={styles.rankBadge}>1</div>
-        <div className={styles.firstMain}>
+        <span className={styles.rankBadge}>1</span>
+        <div className={styles.mainInfo}>
           <strong>{first.name}</strong>
           <span>{first.department}</span>
         </div>
-        <div className={styles.metricStack}>
-          <span>回款额</span>
-          <strong>{formatAmount(first.collectionAmount)}</strong>
-        </div>
-        <div className={styles.metricStack}>
-          <span>合同额</span>
-          <strong>{formatAmount(first.contractAmount)}</strong>
+        <div className={styles.metrics}>
+          <div className={styles.metric}>
+            <span>回款额</span>
+            <strong>{formatAmount(first.collectionAmount)}</strong>
+          </div>
+          <div className={styles.metric}>
+            <span>合同额</span>
+            <strong>{formatAmount(first.contractAmount)}</strong>
+          </div>
         </div>
       </div>
 
       <div className={styles.compactList}>
         {rest.map((item) => (
-          <div key={item.rank} className={styles.compactRow}>
-            <div className={styles.compactLeftPlain}>
-              <span className={styles.compactRank}>{item.rank}</span>
-              <div className={styles.compactMain}>
-                <strong>{item.name}</strong>
-                <span>{item.department}</span>
-              </div>
+          <div key={item.rank} className={styles.card}>
+            <span className={styles.rankBadge}>{item.rank}</span>
+            <div className={styles.mainInfo}>
+              <strong>{item.name}</strong>
+              <span>{item.department}</span>
             </div>
-            <div className={styles.compactMetrics}>
-              <div className={styles.compactMetric}>
+            <div className={styles.metrics}>
+              <div className={styles.metric}>
                 <span>回款额</span>
                 <strong>{formatAmount(item.collectionAmount)}</strong>
               </div>
-              <div className={styles.compactMetric}>
+              <div className={styles.metric}>
                 <span>合同额</span>
                 <strong>{formatAmount(item.contractAmount)}</strong>
               </div>
@@ -65,14 +65,14 @@ const renderBrandProjects = (items: BrandProjectItem[]) => {
 
   return (
     <>
-      <div className={styles.firstCard}>
-        <div className={styles.rankBadge}>1</div>
-        <div className={styles.projectMark}>P</div>
-        <div className={styles.firstMain}>
+      <div className={styles.cardBrand}>
+        <span className={styles.rankBadge}>1</span>
+        <span className={styles.projectMark}>P</span>
+        <div className={styles.mainInfo}>
           <strong>{first.projectName}</strong>
           <span>{first.reason}</span>
         </div>
-        <div className={styles.metricStack}>
+        <div className={styles.metric}>
           <span>产值</span>
           <strong>{formatAmount(first.outputValue)}</strong>
         </div>
@@ -80,16 +80,14 @@ const renderBrandProjects = (items: BrandProjectItem[]) => {
 
       <div className={styles.compactList}>
         {rest.map((item) => (
-          <div key={item.rank} className={styles.compactRow}>
-            <div className={styles.compactLeftRich}>
-              <span className={styles.compactRank}>{item.rank}</span>
-              <span className={styles.projectMarkSmall}>P</span>
-              <div className={styles.compactMain}>
-                <strong>{item.projectName}</strong>
-                <span>{item.reason}</span>
-              </div>
+          <div key={item.rank} className={styles.cardBrand}>
+            <span className={styles.rankBadge}>{item.rank}</span>
+            <span className={styles.projectMarkSmall}>P</span>
+            <div className={styles.mainInfo}>
+              <strong>{item.projectName}</strong>
+              <span>{item.reason}</span>
             </div>
-            <div className={styles.compactMetricSingle}>
+            <div className={styles.metric}>
               <span>产值</span>
               <strong>{formatAmount(item.outputValue)}</strong>
             </div>
@@ -105,10 +103,10 @@ const renderPioneerList = (items: PioneerItem[]) => {
 
   return (
     <>
-      <div className={styles.firstCard}>
-        <div className={styles.rankBadge}>1</div>
+      <div className={styles.cardPioneer}>
+        <span className={styles.rankBadge}>1</span>
         <div className={styles.avatar}>{first.name.slice(0, 1)}</div>
-        <div className={styles.firstMain}>
+        <div className={styles.mainInfo}>
           <strong>{first.name}</strong>
           <span>{first.department}</span>
         </div>
@@ -117,14 +115,12 @@ const renderPioneerList = (items: PioneerItem[]) => {
 
       <div className={styles.compactList}>
         {rest.map((item) => (
-          <div key={item.rank} className={styles.compactRow}>
-            <div className={styles.compactLeftRich}>
-              <span className={styles.compactRank}>{item.rank}</span>
-              <span className={styles.compactAvatar}>{item.name.slice(0, 1)}</span>
-              <div className={styles.compactMain}>
-                <strong>{item.name}</strong>
-                <span>{item.department}</span>
-              </div>
+          <div key={item.rank} className={styles.cardPioneer}>
+            <span className={styles.rankBadge}>{item.rank}</span>
+            <div className={styles.compactAvatar}>{item.name.slice(0, 1)}</div>
+            <div className={styles.mainInfo}>
+              <strong>{item.name}</strong>
+              <span>{item.department}</span>
             </div>
             <p className={styles.compactStory}>{item.achievement}</p>
           </div>
@@ -141,21 +137,27 @@ export const RecognitionBoard = ({ recognition }: RecognitionBoardProps) => {
         <header className={styles.panelHeader}>
           <h2 className={styles.title}>营销战功榜</h2>
         </header>
-        {renderMarketingBattle(recognition.marketingBattle)}
+        <div className={styles.content}>
+          {renderMarketingBattle(recognition.marketingBattle)}
+        </div>
       </article>
 
       <article className={styles.panel}>
         <header className={styles.panelHeader}>
           <h2 className={styles.title}>品牌项目榜</h2>
         </header>
-        {renderBrandProjects(recognition.brandProjects)}
+        <div className={styles.content}>
+          {renderBrandProjects(recognition.brandProjects)}
+        </div>
       </article>
 
       <article className={styles.panel}>
         <header className={styles.panelHeader}>
           <h2 className={styles.title}>奋斗先锋榜</h2>
         </header>
-        {renderPioneerList(recognition.pioneerList)}
+        <div className={styles.content}>
+          {renderPioneerList(recognition.pioneerList)}
+        </div>
       </article>
     </section>
   );

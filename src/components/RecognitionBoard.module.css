@@ -6,11 +6,11 @@
 }
 
 .panel {
-  height: 228px;
+  height: 320px;
   min-height: 0;
   display: grid;
-  grid-template-rows: auto auto minmax(0, 1fr);
-  gap: 12px;
+  grid-template-rows: auto 1fr;
+  gap: 10px;
   padding: 14px;
   border: 1px solid rgba(255, 255, 255, 0.68);
   border-radius: 18px;
@@ -21,7 +21,15 @@
 }
 
 .panelHeader {
-  padding-bottom: 8px;
+  padding-bottom: 4px;
+}
+
+.content {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 8px;
+  min-height: 0;
+  overflow: hidden;
 }
 
 .title {
@@ -31,18 +39,19 @@
   font-weight: 600;
 }
 
-.firstCard {
+/* 统一卡片结构 */
+.firstCard,
+.card {
   display: grid;
-  grid-template-columns: 42px minmax(0, 1.2fr) auto auto;
-  gap: 12px;
-  align-items: start;
-  padding: 14px;
-  border-radius: 16px;
+  grid-template-columns: 34px minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+  padding: 12px;
+  border-radius: 12px;
   background: rgba(247, 249, 252, 0.74);
 }
 
-.rankBadge,
-.compactRank {
+.rankBadge {
   display: grid;
   place-items: center;
   width: 34px;
@@ -54,153 +63,158 @@
   font-weight: 700;
 }
 
-.avatar,
-.compactAvatar,
-.projectMark,
-.projectMarkSmall {
-  display: grid;
-  place-items: center;
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
-  background: #eef2f7;
-  color: #1d1d1f;
-  font-size: 17px;
-  font-weight: 600;
-}
-
-.projectMark,
-.projectMarkSmall {
-  background: #edf4ff;
-  color: #0066cc;
-}
-
-.firstMain,
-.compactMain {
+.mainInfo {
   min-width: 0;
 }
 
-.firstMain strong,
-.compactMain strong {
+.mainInfo strong {
   display: block;
   color: #1d1d1f;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 600;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.firstMain span,
-.compactMain span {
+.mainInfo span {
   display: block;
-  margin-top: 4px;
+  margin-top: 2px;
   color: #7a7a7a;
   font-size: 12px;
 }
 
-.metricStack {
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 12px;
+  align-items: center;
+}
+
+.metric {
   display: grid;
   justify-items: end;
-  gap: 4px;
-  min-width: 102px;
+  gap: 2px;
 }
 
-.metricStack span,
-.compactMetric span,
-.compactMetricSingle span {
+.metric span {
   color: #7a7a7a;
-  font-size: 11px;
+  font-size: 10px;
 }
 
-.metricStack strong,
-.compactMetric strong,
-.compactMetricSingle strong {
+.metric strong {
   color: #1d1d1f;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
   white-space: nowrap;
 }
 
-.story,
-.compactStory {
+.story {
   margin: 0;
   color: #7a7a7a;
   font-size: 12px;
-  line-height: 1.45;
-}
-
-.story {
+  line-height: 1.4;
   min-width: 0;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
 .compactList {
   display: grid;
-  gap: 10px;
-  min-height: 0;
-}
-
-.compactRow {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 12px;
-  padding: 10px 12px;
-  border-radius: 14px;
-  background: rgba(247, 249, 252, 0.74);
-}
-
-.compactLeftPlain,
-.compactLeftRich {
-  display: grid;
-  gap: 10px;
-  align-items: start;
-  min-width: 0;
-}
-
-.compactLeftPlain {
-  grid-template-columns: 34px minmax(0, 1fr);
-}
-
-.compactLeftRich {
-  grid-template-columns: 34px 36px minmax(0, 1fr);
-}
-
-.compactAvatar {
-  width: 36px;
-  height: 36px;
-  border-radius: 10px;
-  font-size: 14px;
-}
-
-.projectMarkSmall {
-  width: 36px;
-  height: 36px;
-  border-radius: 10px;
-  font-size: 14px;
-}
-
-.compactMetrics {
-  display: grid;
   gap: 8px;
-  justify-items: end;
+  min-height: 0;
+  overflow-y: auto;
 }
 
-.compactMetric,
-.compactMetricSingle {
-  display: grid;
-  justify-items: end;
-  gap: 3px;
+.compactList::-webkit-scrollbar {
+  width: 4px;
+}
+
+.compactList::-webkit-scrollbar-thumb {
+  background: rgba(0, 102, 204, 0.16);
+  border-radius: 999px;
+}
+
+.compactList::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 .compactStory {
+  margin: 0;
   min-width: 0;
   align-self: center;
+  color: #7a7a7a;
+  font-size: 12px;
+  line-height: 1.4;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+/* 品牌项目榜特有 */
+.avatar,
+.projectMark {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: #eef2f7;
+  color: #1d1d1f;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.projectMark {
+  background: #edf4ff;
+  color: #0066cc;
+}
+
+.compactAvatar {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: #eef2f7;
+  color: #1d1d1f;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.projectMarkSmall {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: #edf4ff;
+  color: #0066cc;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* 品牌项目榜卡片 */
+.cardBrand {
+  display: grid;
+  grid-template-columns: 34px 34px minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+  padding: 12px;
+  border-radius: 12px;
+  background: rgba(247, 249, 252, 0.74);
+}
+
+/* 奋斗先锋榜卡片 */
+.cardPioneer {
+  display: grid;
+  grid-template-columns: 34px 34px minmax(0, 1fr) 1fr;
+  gap: 10px;
+  align-items: center;
+  padding: 12px;
+  border-radius: 12px;
+  background: rgba(247, 249, 252, 0.74);
 }
