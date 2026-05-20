@@ -56,25 +56,6 @@ export const MetricsBoard = ({ metrics, formatWan, formatPercent }: MetricsBoard
               <strong className={styles.mainValue}>{formatWan(metric.annualActual)}</strong>
               <span className={styles.mainLabel}>年度累计完成额</span>
             </div>
-            <div className={styles.statusTagWrap}>
-              <strong
-                className={`${styles.statusTag} ${styles[statusClassMap[metric.status]]}`}
-              >
-                {metric.status}
-              </strong>
-              <span
-                className={styles.statusHelp}
-                onMouseEnter={() => setTooltipId(metric.key)}
-                onMouseLeave={() => setTooltipId(null)}
-              >
-                ?
-                {tooltipId === metric.key && (
-                  <span className={styles.tooltip}>
-                    {metric.statusReason || statusTitleMap[metric.status]}
-                  </span>
-                )}
-              </span>
-            </div>
           </div>
 
           <div className={styles.heroRow}>

@@ -65,9 +65,9 @@ export const DashboardPage = () => {
         const quarterGap = Math.max(metric.quarterTarget - metric.quarterActual, 0);
         const annualStatus = getMetricStatus(annualRate);
         const quarterStatus = getMetricStatus(quarterRate);
-        const status = annualStatus === '危急' || quarterStatus === '危急' ? '危急' :
-                       annualStatus === '严重滞后' || quarterStatus === '严重滞后' ? '严重滞后' :
-                       annualStatus === '滞后' || quarterStatus === '滞后' ? '滞后' : '正常';
+        const status: MetricStatus = annualStatus === '危急' || quarterStatus === '危急' ? '危急' :
+          annualStatus === '严重滞后' || quarterStatus === '严重滞后' ? '严重滞后' :
+            annualStatus === '滞后' || quarterStatus === '滞后' ? '滞后' : '正常';
         const statusReason = metric.statusReason || getMetricStatusReason(annualRate, quarterRate, status);
 
         return {
