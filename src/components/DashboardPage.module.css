@@ -6,10 +6,8 @@
 /* ===== GLOBAL BACKGROUND ===== */
 .screen {
   position: relative;
-  min-height: 100vh;
-  /* Apple 风格：移除固定宽度，使用弹性布局 */
-  overflow-x: auto;
-  overflow-y: auto;
+  height: 100vh;
+  overflow: hidden;
   /* Apple-inspired subtle gradient canvas */
   background: 
     /* Subtle radial highlight from top-left */
@@ -18,6 +16,10 @@
     radial-gradient(ellipse 60% 50% at 80% 20%, rgba(66, 213, 255, 0.04) 0%, transparent 50%),
     /* Main parchment canvas */
     linear-gradient(180deg, #F8F9FC 0%, #F5F5F7 40%, #F0F2F5 100%);
+}
+
+body {
+  overflow: hidden;
 }
 
 /* Ambient floating orbs for depth */
@@ -57,21 +59,20 @@
 .dashboard {
   position: relative;
   z-index: 1;
-  /* Apple 风格：弹性最小宽度替代固定宽度 */
-  min-width: 1280px;
-  min-height: 100vh;
+  width: 100%;
+  height: 100vh;
   padding: 20px;
   display: grid;
-  /* Apple 风格：弹性行高 */
-  grid-template-rows: auto auto auto auto auto;
+  grid-template-rows: auto auto auto 1fr;
   grid-template-columns: 1fr;
   gap: 14px;
+  overflow: hidden;
 }
 
 .warningArea {
-  /* Apple 风格：弹性高度替代固定高度 */
-  min-height: 340px;
-  height: auto;
+  min-height: 260px;
+  height: 280px;
+  overflow: hidden;
 }
 
 /* ============================================
