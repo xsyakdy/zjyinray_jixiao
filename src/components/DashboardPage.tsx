@@ -23,11 +23,11 @@ const quarterLabelMap = {
   Q4: '第四季度',
 } as const;
 
-const getMetricStatus = (annualRate: number, quarterRate: number): MetricStatus => {
-  const baseRate = Math.max(annualRate, quarterRate);
-  if (baseRate >= 100) return '达标';
-  if (baseRate >= 60) return '关注';
-  return '预警';
+const getMetricStatus = (rate: number): MetricStatus => {
+  if (rate >= 100) return '正常';
+  if (rate >= 80) return '滞后';
+  if (rate >= 50) return '严重滞后';
+  return '危急';
 };
 
 const getMetricStatusReason = (
@@ -38,12 +38,16 @@ const getMetricStatusReason = (
   const baseSource = quarterRate > annualRate ? '季度完成率' : '年度完成率';
   const baseRate = quarterRate > annualRate ? quarterRate : annualRate;
 
-  if (status === '预警') {
-    return `${baseSource} ${baseRate.toFixed(1)}%，低于 60% 阈值`;
+  if (status === '危急') {
+    return `${baseSource} ${baseRate.toFixed(1)}%，低于 50% 阈值`;
   }
 
-  if (status === '关注') {
-    return `${baseSource} ${baseRate.toFixed(1)}%，处于 60%-100% 区间`;
+  if (status === '严重滞后') {
+    return `${baseSource} ${baseRate.toFixed(1)}%，处于 50%-80% 区间`;
+  }
+
+  if (status === '滞后') {
+    return `${baseSource} ${baseRate.toFixed(1)}%，处于 80%-100% 区间`;
   }
 
   return `${baseSource} ${baseRate.toFixed(1)}%，已达到或超过 100%`;
@@ -59,7 +63,11 @@ export const DashboardPage = () => {
         const quarterRate = calculateCompletionRate(metric.quarterActual, metric.quarterTarget);
         const annualGap = Math.max(metric.annualTarget - metric.annualActual, 0);
         const quarterGap = Math.max(metric.quarterTarget - metric.quarterActual, 0);
-        const status = getMetricStatus(annualRate, quarterRate);
+        const annualStatus = getMetricStatus(annualRate);
+        const quarterStatus = getMetricStatus(quarterRate);
+        const status = annualStatus === '危急' || quarterStatus === '危急' ? '危急' :
+                       annualStatus === '严重滞后' || quarterStatus === '严重滞后' ? '严重滞后' :
+                       annualStatus === '滞后' || quarterStatus === '滞后' ? '滞后' : '正常';
         const statusReason = metric.statusReason || getMetricStatusReason(annualRate, quarterRate, status);
 
         return {
@@ -68,6 +76,8 @@ export const DashboardPage = () => {
           quarterRate,
           annualGap,
           quarterGap,
+          annualStatus,
+          quarterStatus,
           status,
           statusReason,
           color: metricColorMap[metric.key],

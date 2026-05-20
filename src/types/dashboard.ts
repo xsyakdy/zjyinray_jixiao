@@ -4,7 +4,7 @@ export interface DashboardFilters {
   scopeNote: string;
 }
 
-export type MetricStatus = '达标' | '关注' | '预警';
+export type MetricStatus = '正常' | '滞后' | '严重滞后' | '危急';
 
 export interface MetricRecord {
   key: 'contract' | 'collection' | 'outputValue';
@@ -29,8 +29,7 @@ export interface MarketingBattleItem {
 export interface BrandProjectItem {
   rank: 1 | 2 | 3;
   projectName: string;
-  personName: string;
-  department: string;
+  personNames: string[];
   outputValue: number;
   reason: string;
 }

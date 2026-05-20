@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { MetricGauge } from './MetricGauge';
 import styles from './MetricsBoard.module.css';
 
+type MetricStatus = '正常' | '滞后' | '严重滞后' | '危急';
+
 interface MetricCardViewModel {
   key: string;
   name: string;
@@ -10,11 +12,13 @@ interface MetricCardViewModel {
   annualTarget: number;
   annualRate: number;
   annualGap: number;
+  annualStatus: MetricStatus;
   quarterTarget: number;
   quarterActual: number;
   quarterRate: number;
   quarterGap: number;
-  status: '达标' | '关注' | '预警';
+  quarterStatus: MetricStatus;
+  status: MetricStatus;
   statusReason?: string;
   color: string;
 }
@@ -26,15 +30,17 @@ interface MetricsBoardProps {
 }
 
 const statusClassMap = {
-  达标: 'good',
-  关注: 'watch',
-  预警: 'alert',
+  正常: 'good',
+  滞后: 'watch',
+  严重滞后: 'alert',
+  危急: 'alert',
 } as const;
 
 const statusTitleMap = {
-  达标: '达标：完成率 ≥ 100%',
-  关注: '关注：完成率 60% - 99%',
-  预警: '预警：完成率 < 60%',
+  正常: '正常：完成率 ≥ 100%',
+  滞后: '滞后：完成率 [80%, 100%)',
+  严重滞后: '严重滞后：完成率 [50%, 80%)',
+  危急: '危急：完成率 < 50%',
 } as const;
 
 export const MetricsBoard = ({ metrics, formatWan, formatPercent }: MetricsBoardProps) => {
@@ -78,7 +84,26 @@ export const MetricsBoard = ({ metrics, formatWan, formatPercent }: MetricsBoard
 
             <div className={styles.metricsColumns}>
               <section className={styles.metricsBlock}>
-                <span className={styles.blockTitle}>年度组</span>
+                <div className={styles.blockTitleRow}>
+                  <span className={styles.blockTitle}>年度组</span>
+                  <span className={styles.blockStatusTag}>
+                    <strong className={`${styles.statusTag} ${styles[statusClassMap[metric.annualStatus]]}`}>
+                      {metric.annualStatus}
+                    </strong>
+                    <span
+                      className={styles.statusHelp}
+                      onMouseEnter={() => setTooltipId(`${metric.key}-annual`)}
+                      onMouseLeave={() => setTooltipId(null)}
+                    >
+                      ?
+                      {tooltipId === `${metric.key}-annual` && (
+                        <span className={styles.tooltip}>
+                          {`年度完成率 ${metric.annualRate.toFixed(1)}%，${statusTitleMap[metric.annualStatus].replace('完成率 ', '')}`}
+                        </span>
+                      )}
+                    </span>
+                  </span>
+                </div>
                 <div className={styles.metricsList}>
                   <div className={styles.metricItem}>
                     <span>年度目标</span>
@@ -96,7 +121,26 @@ export const MetricsBoard = ({ metrics, formatWan, formatPercent }: MetricsBoard
               </section>
 
               <section className={styles.metricsBlock}>
-                <span className={styles.blockTitle}>季度组</span>
+                <div className={styles.blockTitleRow}>
+                  <span className={styles.blockTitle}>季度组</span>
+                  <span className={styles.blockStatusTag}>
+                    <strong className={`${styles.statusTag} ${styles[statusClassMap[metric.quarterStatus]]}`}>
+                      {metric.quarterStatus}
+                    </strong>
+                    <span
+                      className={styles.statusHelp}
+                      onMouseEnter={() => setTooltipId(`${metric.key}-quarter`)}
+                      onMouseLeave={() => setTooltipId(null)}
+                    >
+                      ?
+                      {tooltipId === `${metric.key}-quarter` && (
+                        <span className={styles.tooltip}>
+                          {`季度完成率 ${metric.quarterRate.toFixed(1)}%，${statusTitleMap[metric.quarterStatus].replace('完成率 ', '')}`}
+                        </span>
+                      )}
+                    </span>
+                  </span>
+                </div>
                 <div className={styles.metricsList}>
                   <div className={styles.metricItem}>
                     <span>季度目标</span>

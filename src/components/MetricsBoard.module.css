@@ -113,7 +113,7 @@
   height: 28px;
   padding: 0 12px;
   border-radius: 999px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   transition: transform 0.2s ease;
   flex-shrink: 0;
@@ -153,20 +153,19 @@
   position: absolute;
   top: calc(100% + 8px);
   right: -8px;
-  background: rgba(72, 72, 72, 0.95);
-  color: #fff;
-  padding: 6px 10px;
-  border-radius: 6px;
-  font-size: 11px;
+  background: rgba(255, 255, 255, 0.98);
+  color: #1d1d1f;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 12px;
   font-weight: 500;
   line-height: 1.45;
   white-space: normal;
   min-width: 160px;
   max-width: 220px;
   z-index: 100;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2), 0 2px 8px rgba(0, 0, 0, 0.15);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.08);
   animation: tooltipFadeIn 0.15s ease;
 }
 
@@ -176,7 +175,7 @@
   bottom: 100%;
   right: 10px;
   border: 5px solid transparent;
-  border-bottom-color: rgba(72, 72, 72, 0.95);
+  border-bottom-color: rgba(255, 255, 255, 0.98);
 }
 
 @keyframes tooltipFadeIn {
@@ -289,6 +288,38 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.blockTitleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.blockStatusTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  position: relative;
+}
+
+.blockStatusTag .statusTag {
+  min-width: 48px;
+  height: 22px;
+  padding: 0 8px;
+  font-size: 11px;
+}
+
+.blockStatusTag .statusHelp {
+  width: 14px;
+  height: 14px;
+  font-size: 9px;
+}
+
+.blockStatusTag .tooltip {
+  top: calc(100% + 4px);
+  right: -4px;
 }
 
 .metricsList {

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useReducer } from 'react';
+import { useEffect, useRef, useReducer, useState } from 'react';
 import type {
   BrandProjectItem,
   MarketingBattleItem,
@@ -38,6 +38,37 @@ interface RecognitionBoardProps {
 }
 
 const formatAmount = (value: number) => `${value.toFixed(2)} 万元`;
+
+const formatPersonNames = (names: string[]) => {
+  if (names.length <= 3) {
+    return names.join('、');
+  }
+  return `${names.slice(0, 3).join('、')} 等${names.length}人`;
+};
+
+interface PersonNameDisplayProps {
+  names: string[];
+}
+
+const PersonNameDisplay = ({ names }: PersonNameDisplayProps) => {
+  const [showTooltip, setShowTooltip] = useState(false);
+  const isTruncated = names.length > 3;
+
+  return (
+    <span
+      className={styles.personNames}
+      onMouseEnter={() => isTruncated && setShowTooltip(true)}
+      onMouseLeave={() => setShowTooltip(false)}
+    >
+      {formatPersonNames(names)}
+      {showTooltip && isTruncated && (
+        <span className={styles.personTooltip}>
+          {names.join('、')}
+        </span>
+      )}
+    </span>
+  );
+};
 
 const renderMarketingBattle = (items: MarketingBattleItem[]) => {
   const [first, ...rest] = items;
@@ -97,7 +128,7 @@ const renderBrandProjects = (items: BrandProjectItem[]) => {
         <span className={styles.projectMark}>{first.projectName.slice(0, 1)}</span>
         <div className={styles.mainInfo}>
           <strong>{first.projectName}</strong>
-          <span>{first.personName} · {first.department}</span>
+          <PersonNameDisplay names={first.personNames} />
           <span>{first.reason}</span>
         </div>
         <div className={styles.metric}>
@@ -113,7 +144,7 @@ const renderBrandProjects = (items: BrandProjectItem[]) => {
             <span className={styles.projectMarkSmall}>{item.projectName.slice(0, 1)}</span>
             <div className={styles.mainInfo}>
               <strong>{item.projectName}</strong>
-              <span>{item.personName} · {item.department}</span>
+              <PersonNameDisplay names={item.personNames} />
               <span>{item.reason}</span>
             </div>
             <div className={styles.metric}>
