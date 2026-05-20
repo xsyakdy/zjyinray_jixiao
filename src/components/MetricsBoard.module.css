@@ -6,10 +6,12 @@
 .board {
   display: grid;
   /* Apple 风格：弹性网格，使用 auto-fill 替代固定列 */
-  grid-template-columns: repeat(3, minmax(320px, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 18px;
   min-height: 0;
   height: 100%;
+  width: 100%;
+  min-width: 0;
 }
 
 .card {
@@ -32,6 +34,9 @@
   animation: cardFadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
   /* 允许状态提示浮层超出卡片显示，避免被裁切 */
   overflow: visible;
+  /* 确保卡片可以收缩 */
+  min-width: 0;
+  width: 100%;
 }
 
 .card:nth-child(1) { animation-delay: 0ms; }
@@ -63,6 +68,12 @@
   align-items: flex-start;
   gap: 14px;
   flex-shrink: 0;
+  min-width: 0;
+}
+
+.cardTop > div:first-child {
+  min-width: 0;
+  flex: 1;
 }
 
 .cardInfo {
@@ -212,11 +223,12 @@
 .heroRow {
   flex: 1;
   /* Apple 风格：最小高度替代固定高度 */
-  min-height: 100px;
+  min-height: 0;
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: 100px minmax(0, 1fr);
   gap: 18px;
   align-items: center;
+  min-width: 0;
 }
 
 .gaugeWrap {
@@ -231,6 +243,7 @@
 .metricsColumns {
   flex: 1;
   min-height: 0;
+  min-width: 0;
   display: grid;
   /* Apple 风格：弹性双列 */
   grid-template-columns: repeat(2, 1fr);
@@ -239,6 +252,7 @@
 
 .metricsBlock {
   min-height: 0;
+  min-width: 0;
   padding: 12px;
   padding-left: 20px;
   border-radius: 16px;
@@ -390,4 +404,50 @@
   height: 100%;
   border-radius: inherit;
   transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+
+/* 1366px */
+@media (max-width: 1366px) {
+  .board {
+    gap: 12px;
+  }
+
+  .card {
+    padding: 14px 16px;
+    gap: 10px;
+  }
+
+  .heroRow {
+    gap: 12px;
+    grid-template-columns: 80px minmax(0, 1fr);
+  }
+
+  .gaugeWrap {
+    width: 80px;
+    height: 80px;
+  }
+
+  .metricsColumns {
+    gap: 8px;
+  }
+
+  .metricsBlock {
+    padding: 10px;
+    padding-left: 16px;
+  }
+}
+
+/* 1440px */
+@media (max-width: 1440px) {
+  .board {
+    gap: 14px;
+  }
+
+  .card {
+    padding: 16px 18px;
+  }
 }

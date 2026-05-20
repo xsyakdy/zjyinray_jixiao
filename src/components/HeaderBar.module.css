@@ -10,8 +10,8 @@
   align-items: center;
   gap: 20px;
   /* Apple 风格：最小高度替代固定高度 */
-  min-height: 80px;
-  padding: 0 20px;
+  min-height: 92px;
+  padding: 10px 20px;
   border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 20px;
   background: rgba(255, 255, 255, 0.72);
@@ -78,7 +78,7 @@
   gap: 16px;
   min-width: 0;
   /* Apple 风格：最小高度替代固定高度 */
-  min-height: 48px;
+  min-height: 52px;
   padding: 0 16px;
   border-radius: 14px;
   background: rgba(247, 249, 252, 0.7);
@@ -131,6 +131,7 @@
   gap: 10px;
   justify-content: flex-end;
   flex-shrink: 0;
+  align-items: center;
 }
 
 .actionButton {
