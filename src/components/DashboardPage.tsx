@@ -7,7 +7,6 @@ import { calculateCompletionRate } from '../utils/metrics';
 import { HeaderBar } from './HeaderBar';
 import { MetricsBoard } from './MetricsBoard';
 import { RecognitionBoard } from './RecognitionBoard';
-import { SummaryBar } from './SummaryBar';
 import { WarningBoard } from './WarningBoard';
 import styles from './DashboardPage.module.css';
 
@@ -77,21 +76,8 @@ export const DashboardPage = () => {
     [],
   );
 
-  const summaryItems = useMemo(() => {
-    const warningCount = metrics.filter((item) => item.status === '预警').length;
-    const watchCount = metrics.filter((item) => item.status === '关注').length;
-    const goodCount = metrics.filter((item) => item.status === '达标').length;
-    const highRiskCount = mockDashboardData.warnings.filter((item) => item.riskLevel === '高风险').length;
-    const pendingCount = mockDashboardData.warnings.filter((item) => item.status === '待处理').length;
-
-    return [
-      { label: '达标指标数量', value: goodCount, tone: 'good' as const },
-      { label: '关注指标数量', value: watchCount, tone: 'watch' as const },
-      { label: '预警指标数量', value: warningCount, tone: 'alert' as const },
-      { label: '高风险数量', value: highRiskCount, tone: 'alert' as const },
-      { label: '待处理风险数量', value: pendingCount, tone: 'info' as const },
-    ];
-  }, [metrics]);
+  const highRiskCount = mockDashboardData.warnings.filter((item) => item.riskLevel === '高风险').length;
+  const pendingCount = mockDashboardData.warnings.filter((item) => item.status === '待处理').length;
 
   const currentScope = `${mockDashboardData.filters.year} 年 / ${quarterLabelMap[mockDashboardData.filters.quarter]}`;
 
@@ -104,14 +90,16 @@ export const DashboardPage = () => {
           currentTime={currentTime}
         />
 
-        <SummaryBar items={summaryItems} />
-
         <MetricsBoard metrics={metrics} formatWan={formatWan} formatPercent={formatPercent} />
 
         <RecognitionBoard recognition={mockDashboardData.recognition} />
 
         <div className={styles.warningArea}>
-          <WarningBoard warnings={mockDashboardData.warnings} />
+          <WarningBoard
+            warnings={mockDashboardData.warnings}
+            highRiskCount={highRiskCount}
+            pendingCount={pendingCount}
+          />
         </div>
       </section>
     </main>

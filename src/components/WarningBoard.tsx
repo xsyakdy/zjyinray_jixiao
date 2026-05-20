@@ -4,6 +4,8 @@ import styles from './WarningBoard.module.css';
 
 interface WarningBoardProps {
   warnings: WarningItem[];
+  highRiskCount: number;
+  pendingCount: number;
 }
 
 const riskClassMap = {
@@ -12,12 +14,25 @@ const riskClassMap = {
   低风险: 'low',
 } as const;
 
-export const WarningBoard = ({ warnings }: WarningBoardProps) => {
+export const WarningBoard = ({ warnings, highRiskCount, pendingCount }: WarningBoardProps) => {
   return (
     <section className={styles.board}>
       <header className={styles.header}>
-        <h2 className={styles.title}>风险督办</h2>
-        <p className={styles.subtitle}>当前页展示风险等级、责任人、处理状态与下一步督办动作</p>
+        <div className={styles.titleRow}>
+          <h2 className={styles.title}>风险督办</h2>
+          <div className={styles.counts}>
+            <div className={`${styles.countBadge} ${styles.highRiskBadge}`}>
+              <span className={styles.countDot} />
+              <span className={styles.countLabel}>高风险</span>
+              <span className={styles.countValue}>{highRiskCount}</span>
+            </div>
+            <div className={`${styles.countBadge} ${styles.pendingBadge}`}>
+              <span className={styles.countDot} />
+              <span className={styles.countLabel}>待处理</span>
+              <span className={styles.countValue}>{pendingCount}</span>
+            </div>
+          </div>
+        </div>
       </header>
 
       <div className={styles.columns}>
