@@ -461,9 +461,9 @@
 .pioneerCard {
   flex: 1;
   display: grid;
-  grid-template-columns: 130px 1fr;
-  gap: 48px;
-  padding: 20px;
+  grid-template-columns: minmax(96px, clamp(96px, 6.8vw, 130px)) minmax(0, 1fr);
+  gap: clamp(14px, 2.2vw, 36px);
+  padding: clamp(12px, 1.2vw, 20px);
   background: rgba(255, 255, 255, 0.95);
   border-radius: 16px;
   border: 1px solid rgba(0, 102, 204, 0.1);
@@ -482,8 +482,8 @@
 }
 
 .pioneerAvatar {
-  width: 115px;
-  height: 115px;
+  width: clamp(82px, 5.9vw, 115px);
+  height: clamp(82px, 5.9vw, 115px);
   border-radius: 20px;
   background: linear-gradient(135deg, #eef2f7 0%, #f5f7fa 100%);
   color: #1d1d1f;
@@ -507,6 +507,7 @@
   gap: 10px;
   min-width: 0;
   overflow: hidden;
+  min-height: 0;
 }
 
 .pioneerHeader {
@@ -572,7 +573,7 @@
 
 .pioneerName {
   margin: 0;
-  font-size: 22px;
+  font-size: clamp(17px, 1.15vw, 22px);
   font-weight: 700;
   color: #1d1d1f;
   letter-spacing: -0.01em;
@@ -581,7 +582,7 @@
 
 .pioneerDept {
   color: #666;
-  font-size: 14px;
+  font-size: clamp(12px, 0.73vw, 14px);
 }
 
 .pioneerRank {
@@ -633,14 +634,37 @@
 
 .pioneerStoryText {
   margin: 0;
-  font-size: 15px;
-  line-height: 1.5;
+  font-size: clamp(13px, 0.78vw, 15px);
+  line-height: 1.45;
   color: #333;
   flex: 1;
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
+}
+
+@media (max-height: 900px) {
+  .pioneerCard {
+    gap: 14px;
+    padding: 12px;
+  }
+
+  .pioneerLeft {
+    gap: 8px;
+  }
+
+  .pioneerRank {
+    padding-bottom: 6px;
+  }
+
+  .pioneerStory {
+    gap: 4px;
+  }
+
+  .pioneerStoryText {
+    -webkit-line-clamp: 3;
+  }
 }
 
 .modalContent {
