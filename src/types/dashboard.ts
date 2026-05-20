@@ -14,11 +14,13 @@ export interface MetricRecord {
   annualActual: number;
   quarterTarget: number;
   quarterActual: number;
+  statusReason?: string;
 }
 
 export interface MarketingBattleItem {
   rank: 1 | 2 | 3;
-  name: string;
+  regionName: string;
+  personName: string;
   department: string;
   collectionAmount: number;
   contractAmount: number;
@@ -27,6 +29,8 @@ export interface MarketingBattleItem {
 export interface BrandProjectItem {
   rank: 1 | 2 | 3;
   projectName: string;
+  personName: string;
+  department: string;
   outputValue: number;
   reason: string;
 }

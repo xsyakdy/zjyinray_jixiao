@@ -47,8 +47,8 @@ const renderMarketingBattle = (items: MarketingBattleItem[]) => {
       <div className={styles.firstCard}>
         <span className={styles.rankBadge}>1</span>
         <div className={styles.mainInfo}>
-          <strong>{first.name}</strong>
-          <span>{first.department}</span>
+          <strong>{first.regionName}</strong>
+          <span>{first.personName} · {first.department}</span>
         </div>
         <div className={styles.metrics}>
           <div className={styles.metric}>
@@ -67,8 +67,8 @@ const renderMarketingBattle = (items: MarketingBattleItem[]) => {
           <div key={item.rank} className={styles.card}>
             <span className={styles.rankBadge}>{item.rank}</span>
             <div className={styles.mainInfo}>
-              <strong>{item.name}</strong>
-              <span>{item.department}</span>
+              <strong>{item.regionName}</strong>
+              <span>{item.personName} · {item.department}</span>
             </div>
             <div className={styles.metrics}>
               <div className={styles.metric}>
@@ -94,9 +94,10 @@ const renderBrandProjects = (items: BrandProjectItem[]) => {
     <>
       <div className={styles.cardBrand}>
         <span className={styles.rankBadge}>1</span>
-        <span className={styles.projectMark}>P</span>
+        <span className={styles.projectMark}>{first.projectName.slice(0, 1)}</span>
         <div className={styles.mainInfo}>
           <strong>{first.projectName}</strong>
+          <span>{first.personName} · {first.department}</span>
           <span>{first.reason}</span>
         </div>
         <div className={styles.metric}>
@@ -109,9 +110,10 @@ const renderBrandProjects = (items: BrandProjectItem[]) => {
         {rest.map((item) => (
           <div key={item.rank} className={styles.cardBrand}>
             <span className={styles.rankBadge}>{item.rank}</span>
-            <span className={styles.projectMarkSmall}>P</span>
+            <span className={styles.projectMarkSmall}>{item.projectName.slice(0, 1)}</span>
             <div className={styles.mainInfo}>
               <strong>{item.projectName}</strong>
+              <span>{item.personName} · {item.department}</span>
               <span>{item.reason}</span>
             </div>
             <div className={styles.metric}>
@@ -128,7 +130,6 @@ const renderBrandProjects = (items: BrandProjectItem[]) => {
 const renderPioneerListFull = (
   items: PioneerItem[],
   activeIndex: number,
-  onNext: () => void,
   onDotClick: (index: number) => void,
   onMouseEnter: () => void,
   onMouseLeave: () => void
@@ -232,7 +233,6 @@ export const RecognitionBoard = ({ recognition }: RecognitionBoardProps) => {
           {renderPioneerListFull(
             pioneerList,
             state.index,
-            () => dispatch({ type: 'NEXT' }),
             (idx) => dispatch({ type: 'GOTO', index: idx }),
             () => dispatch({ type: 'PAUSE_AUTOPLAY' }),
             () => dispatch({ type: 'NEXT' })

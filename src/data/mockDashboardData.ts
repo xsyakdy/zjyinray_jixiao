@@ -37,14 +37,14 @@ export const mockDashboardData: DashboardData = {
   ],
   recognition: {
     marketingBattle: [
-      { rank: 1, name: '西北大区', department: '营销中心', collectionAmount: 1380.5, contractAmount: 1820.8 },
-      { rank: 2, name: '华东大区', department: '区域事业部', collectionAmount: 1245.2, contractAmount: 1692.6 },
-      { rank: 3, name: '华南大区', department: '营销中心', collectionAmount: 1176.8, contractAmount: 1548.3 },
+      { rank: 1, regionName: '西北大区', personName: '张华', department: '营销中心', collectionAmount: 1380.5, contractAmount: 1820.8 },
+      { rank: 2, regionName: '华东大区', personName: '李明', department: '区域事业部', collectionAmount: 1245.2, contractAmount: 1692.6 },
+      { rank: 3, regionName: '华南大区', personName: '王芳', department: '营销中心', collectionAmount: 1176.8, contractAmount: 1548.3 },
     ],
     brandProjects: [
-      { rank: 1, projectName: '智慧园区示范项目', outputValue: 865.4, reason: '作为区域标杆案例，完成度高且客户示范效应强。' },
-      { rank: 2, projectName: '城市运营中台项目', outputValue: 732.8, reason: '跨部门协同推进顺畅，形成可复制交付模式。' },
-      { rank: 3, projectName: '数字工厂项目', outputValue: 688.6, reason: '产线改造进度稳健，品牌传播与交付表现兼顾。' },
+      { rank: 1, projectName: '智慧园区示范项目', personName: '王磊', department: '营销中心', outputValue: 865.4, reason: '作为区域标杆案例，完成度高且客户示范效应强。' },
+      { rank: 2, projectName: '城市运营中台项目', personName: '李娜', department: '解决方案部', outputValue: 732.8, reason: '跨部门协同推进顺畅，形成可复制交付模式。' },
+      { rank: 3, projectName: '数字工厂项目', personName: '张强', department: '交付中心', outputValue: 688.6, reason: '产线改造进度稳健，品牌传播与交付表现兼顾。' },
     ],
     pioneerList: [
       { rank: 1, name: '赵倩', department: '项目管理部', achievement: '连续推动跨部门问题闭环，关键节点提前完成交付准备。', avatar: '/images/zhaoqian.png' },

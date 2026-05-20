@@ -30,8 +30,8 @@
     inset 0 1px 0 rgba(255, 255, 255, 0.8);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   animation: cardFadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
-  /* Apple 风格：防止内容溢出 */
-  overflow: hidden;
+  /* 允许状态提示浮层超出卡片显示，避免被裁切 */
+  overflow: visible;
 }
 
 .card:nth-child(1) { animation-delay: 0ms; }
@@ -77,7 +77,7 @@
 .cardName {
   display: block;
   color: #1d1d1f;
-  font-size: 18px;
+  font-size: 24px;
   font-weight: 600;
   letter-spacing: -0.01em;
   /* Apple 风格：文本截断 */
@@ -90,7 +90,7 @@
   display: block;
   margin-top: 6px;
   color: #1d1d1f;
-  font-size: 34px;
+  font-size: 32px;
   line-height: 1;
   font-weight: 600;
   letter-spacing: -0.04em;
@@ -117,6 +117,77 @@
   font-weight: 600;
   transition: transform 0.2s ease;
   flex-shrink: 0;
+}
+
+.statusTagWrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 2;
+}
+
+.statusHelp {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: rgba(120, 120, 128, 0.24);
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 10px;
+  font-weight: 600;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Roboto, sans-serif;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: help;
+  transition: all 0.2s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.statusHelp:hover {
+  background: rgba(120, 120, 128, 0.48);
+  color: #fff;
+  transform: scale(1.15);
+}
+
+.tooltip {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: -8px;
+  background: rgba(72, 72, 72, 0.95);
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.45;
+  white-space: normal;
+  min-width: 160px;
+  max-width: 220px;
+  z-index: 100;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2), 0 2px 8px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  animation: tooltipFadeIn 0.15s ease;
+}
+
+.tooltip::before {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  right: 10px;
+  border: 5px solid transparent;
+  border-bottom-color: rgba(72, 72, 72, 0.95);
+}
+
+@keyframes tooltipFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .card:hover .statusTag {

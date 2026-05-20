@@ -1,5 +1,5 @@
 import { useEffect, useState, useMemo, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import type { MouseEvent } from 'react';
 import type { PioneerItem } from '../types/dashboard';
 import styles from './RankPersonModal.module.css';
 
@@ -12,25 +12,16 @@ interface RankPersonModalProps {
 // 文字逐字动画的单个单词组件
 const AnimatedWord = ({ word, delay }: { word: string; delay: number }) => {
   return (
-    <motion.span
-      initial={{
-        filter: 'blur(8px)',
-        opacity: 0,
-        y: 4,
-      }}
-      animate={{
+    <span
+      style={{
         filter: 'blur(0px)',
         opacity: 1,
-        y: 0,
-      }}
-      transition={{
-        duration: 0.3,
-        ease: 'easeOut',
-        delay: delay,
+        transform: 'translateY(0)',
+        animationDelay: `${delay}s`,
       }}
     >
       {word}&nbsp;
-    </motion.span>
+    </span>
   );
 };
 
@@ -77,13 +68,9 @@ export const RankPersonModal = ({ items, initialIndex, onClose }: RankPersonModa
 
   return (
     <div className={styles.overlay} onClick={onClose}>
-      <motion.div
+      <div
         className={styles.modal}
-        onClick={(e) => e.stopPropagation()}
-        initial={{ opacity: 0, scale: 0.92, y: 20 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.95, y: 10 }}
-        transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+        onClick={(e: MouseEvent<HTMLDivElement>) => e.stopPropagation()}
       >
         <button className={styles.closeButton} onClick={onClose} aria-label="关闭">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -117,68 +104,37 @@ export const RankPersonModal = ({ items, initialIndex, onClose }: RankPersonModa
 
           {/* 右侧信息区域 */}
           <div className={styles.infoSection}>
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeIndex}
-                className={styles.infoWrapper}
-                variants={infoVariants}
-                initial="initial"
-                animate="animate"
-                exit="exit"
-                transition={{ duration: 0.3, ease: 'easeOut' }}
-              >
-                <motion.h2
-                  className={styles.name}
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.35, ease: 'easeOut', delay: 0.05 }}
-                >
+            <div
+              key={activeIndex}
+              className={styles.infoWrapper}
+              style={{ opacity: infoVariants.animate.opacity, transform: `translateX(${infoVariants.animate.x}px)` }}
+            >
+                <h2 className={styles.name}>
                   {activeItem.name}
-                </motion.h2>
+                </h2>
 
-                <motion.p
-                  className={styles.department}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.35, ease: 'easeOut', delay: 0.1 }}
-                >
+                <p className={styles.department}>
                   {activeItem.department}
-                </motion.p>
+                </p>
 
-                <motion.div
-                  className={styles.rankTag}
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
-                >
+                <div className={styles.rankTag}>
                   <span className={styles.tagNumber}>{activeItem.rank}</span>
                   <span className={styles.tagDivider}></span>
                   <span className={styles.tagText}>奋斗先锋</span>
-                </motion.div>
+                </div>
 
-                <motion.div
-                  className={styles.divider}
-                  initial={{ width: 0 }}
-                  animate={{ width: 50 }}
-                  transition={{ duration: 0.4, ease: 'easeOut', delay: 0.2 }}
-                />
+                <div className={styles.divider} />
 
                 <div className={styles.descriptionSection}>
-                  <motion.p
-                    className={styles.sectionLabel}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.25, delay: 0.25 }}
-                  >
+                  <p className={styles.sectionLabel}>
                     奋斗事迹
-                  </motion.p>
+                  </p>
                   <AnimatedText
                     text={activeItem.achievement}
                     baseDelay={0.3}
                   />
                 </div>
-              </motion.div>
-            </AnimatePresence>
+            </div>
           </div>
         </div>
 
@@ -220,7 +176,7 @@ export const RankPersonModal = ({ items, initialIndex, onClose }: RankPersonModa
             {activeIndex + 1} / {itemsLength}
           </div>
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 };

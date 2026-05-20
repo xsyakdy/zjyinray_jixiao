@@ -31,6 +31,25 @@ const getMetricStatus = (annualRate: number, quarterRate: number): MetricStatus 
   return '预警';
 };
 
+const getMetricStatusReason = (
+  annualRate: number,
+  quarterRate: number,
+  status: MetricStatus,
+) => {
+  const baseSource = quarterRate > annualRate ? '季度完成率' : '年度完成率';
+  const baseRate = quarterRate > annualRate ? quarterRate : annualRate;
+
+  if (status === '预警') {
+    return `${baseSource} ${baseRate.toFixed(1)}%，低于 60% 阈值`;
+  }
+
+  if (status === '关注') {
+    return `${baseSource} ${baseRate.toFixed(1)}%，处于 60%-100% 区间`;
+  }
+
+  return `${baseSource} ${baseRate.toFixed(1)}%，已达到或超过 100%`;
+};
+
 export const DashboardPage = () => {
   const currentTime = useCurrentTime();
 
@@ -42,6 +61,7 @@ export const DashboardPage = () => {
         const annualGap = Math.max(metric.annualTarget - metric.annualActual, 0);
         const quarterGap = Math.max(metric.quarterTarget - metric.quarterActual, 0);
         const status = getMetricStatus(annualRate, quarterRate);
+        const statusReason = metric.statusReason || getMetricStatusReason(annualRate, quarterRate, status);
 
         return {
           ...metric,
@@ -50,6 +70,7 @@ export const DashboardPage = () => {
           annualGap,
           quarterGap,
           status,
+          statusReason,
           color: metricColorMap[metric.key],
         };
       }),

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { MetricGauge } from './MetricGauge';
 import styles from './MetricsBoard.module.css';
 
@@ -14,6 +15,7 @@ interface MetricCardViewModel {
   quarterRate: number;
   quarterGap: number;
   status: '达标' | '关注' | '预警';
+  statusReason?: string;
   color: string;
 }
 
@@ -29,7 +31,15 @@ const statusClassMap = {
   预警: 'alert',
 } as const;
 
+const statusTitleMap = {
+  达标: '达标：完成率 ≥ 100%',
+  关注: '关注：完成率 60% - 99%',
+  预警: '预警：完成率 < 60%',
+} as const;
+
 export const MetricsBoard = ({ metrics, formatWan, formatPercent }: MetricsBoardProps) => {
+  const [tooltipId, setTooltipId] = useState<string | null>(null);
+
   return (
     <section className={styles.board}>
       {metrics.map((metric) => (
@@ -40,9 +50,25 @@ export const MetricsBoard = ({ metrics, formatWan, formatPercent }: MetricsBoard
               <strong className={styles.mainValue}>{formatWan(metric.annualActual)}</strong>
               <span className={styles.mainLabel}>年度累计完成额</span>
             </div>
-            <strong className={`${styles.statusTag} ${styles[statusClassMap[metric.status]]}`}>
-              {metric.status}
-            </strong>
+            <div className={styles.statusTagWrap}>
+              <strong
+                className={`${styles.statusTag} ${styles[statusClassMap[metric.status]]}`}
+              >
+                {metric.status}
+              </strong>
+              <span
+                className={styles.statusHelp}
+                onMouseEnter={() => setTooltipId(metric.key)}
+                onMouseLeave={() => setTooltipId(null)}
+              >
+                ?
+                {tooltipId === metric.key && (
+                  <span className={styles.tooltip}>
+                    {metric.statusReason || statusTitleMap[metric.status]}
+                  </span>
+                )}
+              </span>
+            </div>
           </div>
 
           <div className={styles.heroRow}>
