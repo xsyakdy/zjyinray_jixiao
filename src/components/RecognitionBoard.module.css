@@ -62,11 +62,25 @@
 
 .content {
   display: grid;
-  grid-template-rows: auto minmax(0, 1fr);
+  grid-template-rows: auto 1fr;
   gap: 8px;
   min-height: 0;
-  overflow: hidden;
-  padding-bottom: 4px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 4px;
+}
+
+.content::-webkit-scrollbar {
+  width: 4px;
+}
+
+.content::-webkit-scrollbar-thumb {
+  background: rgba(0, 102, 204, 0.22);
+  border-radius: 999px;
+}
+
+.content::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 .panel:last-child .content {
@@ -390,6 +404,7 @@
   animation: cardSlideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
   min-height: 0;
   overflow: hidden;
+  min-width: 0;
 }
 
 .cardPioneer:hover {
@@ -640,7 +655,7 @@
   flex: 1;
   overflow: hidden;
   display: -webkit-box;
-  -webkit-line-clamp: 4;
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 }
 

@@ -6,9 +6,8 @@
 /* ===== GLOBAL BACKGROUND ===== */
 .screen {
   position: relative;
-  height: 100dvh;
   min-height: 100vh;
-  overflow: hidden;
+  overflow-x: hidden;
   /* Apple-inspired subtle gradient canvas */
   background: 
     /* Subtle radial highlight from top-left */
@@ -20,7 +19,7 @@
 }
 
 body {
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 /* Ambient floating orbs for depth */
@@ -61,14 +60,14 @@ body {
   position: relative;
   z-index: 1;
   width: 100%;
-  height: 100%;
-  min-height: 0;
+  height: auto;
+  min-height: 100%;
   padding: 20px;
   display: grid;
-  grid-template-rows: auto minmax(0, 1.05fr) minmax(0, 1.15fr) minmax(0, 0.88fr);
+  grid-template-rows: auto minmax(0, 0.95fr) minmax(0, 0.85fr) minmax(0, 1.2fr);
   grid-template-columns: 1fr;
   gap: 14px;
-  overflow: hidden;
+  overflow: visible;
   min-width: 0;
 }
 
@@ -79,7 +78,6 @@ body {
 
 .warningArea {
   min-height: 0;
-  overflow: hidden;
   display: flex;
 }
 
@@ -896,7 +894,7 @@ body {
   .dashboard {
     padding: 16px;
     gap: 12px;
-    grid-template-rows: auto minmax(0, 1.1fr) minmax(0, 0.96fr) minmax(0, 1fr);
+    grid-template-rows: auto minmax(0, 0.98fr) minmax(0, 0.88fr) minmax(0, 1.14fr);
   }
 
   .commandGrid {
@@ -916,7 +914,7 @@ body {
     padding: 12px;
     gap: 10px;
     min-width: unset;
-    grid-template-rows: auto minmax(0, 1.06fr) minmax(0, 0.92fr) minmax(0, 1.02fr);
+    grid-template-rows: auto minmax(0, 0.96fr) minmax(0, 0.82fr) minmax(0, 1.22fr);
   }
 
   .topHeader {
@@ -958,7 +956,7 @@ body {
 @media (max-width: 1536px) and (min-width: 1367px) {
   .dashboard {
     min-width: unset;
-    grid-template-rows: auto minmax(0, 1.1fr) minmax(0, 0.96fr) minmax(0, 1fr);
+    grid-template-rows: auto minmax(0, 1fr) minmax(0, 0.86fr) minmax(0, 1.14fr);
   }
 
   .metricsGrid,
@@ -984,7 +982,7 @@ body {
   .dashboard {
     padding: 14px;
     gap: 10px;
-    grid-template-rows: auto minmax(0, 1.04fr) minmax(0, 0.9fr) minmax(0, 1.06fr);
+    grid-template-rows: auto minmax(0, 0.94fr) minmax(0, 0.8fr) minmax(0, 1.26fr);
   }
 }
 
@@ -992,6 +990,6 @@ body {
   .dashboard {
     padding: 10px;
     gap: 8px;
-    grid-template-rows: auto minmax(0, 1fr) minmax(0, 0.86fr) minmax(0, 1.12fr);
+    grid-template-rows: auto minmax(0, 0.9fr) minmax(0, 0.76fr) minmax(0, 1.34fr);
   }
 }
